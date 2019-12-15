@@ -22,8 +22,10 @@
     "clean": "ets clean"
   },
   "dependencies": {
+    "cheerio": "1.0.0-rc.3",
     "egg": "^2.6.1",
-    "egg-scripts": "^2.6.0"
+    "egg-scripts": "^2.6.0",
+    "superagent": "5.1.2"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.40",

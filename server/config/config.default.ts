@@ -15,9 +15,16 @@ export default (appInfo: EggAppInfo) => {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
   };
 
+  // 站酷
+  const crawlerUrl = {
+    zcool: 'https://www.zcool.com.cn',
+  }
+
+
   // the return config will combines to EggAppConfig
   return {
     ...config,
     ...bizConfig,
+    ...crawlerUrl,
   };
 };
