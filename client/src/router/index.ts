@@ -11,6 +11,11 @@ const routes = [
     component: Home
   },
   {
+    path: "/zcool",
+    name: "zcool",
+    component: () => import('../views/zcool/index.vue')
+  },
+  {
     path: "/about",
     name: "about",
     // route level code-splitting

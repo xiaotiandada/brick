@@ -38,7 +38,6 @@ export default class Layout extends Vue {}
   background-color: rgb(27, 109, 163);
 }
 .container {
-  background-color: #eee;
-  height: calc(100% - 60px);
+  min-height: calc(100% - 60px);
 }
 </style>
