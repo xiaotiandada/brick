@@ -47,9 +47,11 @@ export default class Test extends Service {
         console.log('---', i);
         const img = $(el).find('.card-img a img').attr('src');
         const title = $(el).find('.card-info .card-info-title a').text();
+        const href = $(el).find('.card-img a').attr('href')
         arr.push({
           title: title.replace(/\//g, ''), // 去掉 / 因为 / 会认为是路径, 根据实际情况来操作
           url: img.replace('@260w_195h_1c_1e_1o_100sh.jpg', ''), // 去掉后缀 不使用缩略图 根据实际情况来操作
+          href,
         });
       });
       return {

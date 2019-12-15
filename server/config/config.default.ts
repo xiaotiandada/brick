@@ -18,8 +18,12 @@ export default (appInfo: EggAppInfo) => {
   // 站酷
   const crawlerUrl = {
     zcool: 'https://www.zcool.com.cn',
-  }
-
+  };
+  // cors
+  config.security = {
+    domainWhiteList: [ 'http://localhost:8080', 'http://127.0.0.1:8080' ],
+  };
+  // cors end
 
   // the return config will combines to EggAppConfig
   return {
