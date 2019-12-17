@@ -1,13 +1,47 @@
 <template>
   <div class="layout">
     <div class="sidebar" :class="sidebar && 'open'">
-      1
+      <el-menu
+        default-active="2"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+      >
+        <el-submenu index="1">
+          <template slot="title">
+            <i class="el-icon-location"></i>
+            <span>导航一</span>
+          </template>
+          <el-menu-item-group>
+            <template slot="title">分组一</template>
+            <el-menu-item index="1-1">选项1</el-menu-item>
+            <el-menu-item index="1-2">选项2</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group title="分组2">
+            <el-menu-item index="1-3">选项3</el-menu-item>
+          </el-menu-item-group>
+          <el-submenu index="1-4">
+            <template slot="title">选项4</template>
+            <el-menu-item index="1-4-1">选项1</el-menu-item>
+          </el-submenu>
+        </el-submenu>
+        <el-menu-item index="2" route="{name: 'zcool'}">
+          <i class="el-icon-menu"></i>
+          <span slot="title">站酷</span>
+        </el-menu-item>
+        <el-menu-item index="3" disabled>
+          <i class="el-icon-document"></i>
+          <span slot="title">导航三</span>
+        </el-menu-item>
+        <el-menu-item index="4">
+          <i class="el-icon-setting"></i>
+          <span slot="title">导航四</span>
+        </el-menu-item>
+      </el-menu>
     </div>
     <div class="main" :class="sidebar && 'open'">
       <div class="header">
-        1
         <el-button @click="sidebar = !sidebar">Sidebar</el-button>
-
       </div>
       <div class="container">
         <router-view></router-view>
@@ -21,10 +55,18 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class Layout extends Vue {
-  data() {
-    return {
-      sidebar: true
-    }
+  private sidebar: Boolean = true;
+  created() {
+    this.test();
+  }
+  private handleOpen(key, keyPath) {
+    console.log(key, keyPath);
+  }
+  private handleClose(key, keyPath) {
+    console.log(key, keyPath);
+  }
+  private test() {
+    console.log(111);
   }
 }
 </script>
@@ -39,13 +81,13 @@ export default class Layout extends Vue {
   position: relative;
 }
 .sidebar {
-  background-color: rgb(29, 135, 235);
   position: fixed;
   top: 0;
   bottom: 0;
   left: -220px;
   width: 220px;
-  transition: all .2s;
+  transition: all 0.2s;
+  background-color: #409eff;
   &.open {
     left: 0;
   }
@@ -55,7 +97,7 @@ export default class Layout extends Vue {
   position: absolute;
   left: 0;
   width: 100%;
-  transition: all .2s;
+  transition: all 0.2s;
   &.open {
     width: calc(100% - 220px);
     left: 220px;
