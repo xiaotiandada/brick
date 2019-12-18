@@ -2,6 +2,7 @@
   <div class="layout">
     <div class="sidebar" :class="sidebar && 'open'">
       <el-menu
+        router
         default-active="2"
         class="el-menu-vertical-demo"
         @open="handleOpen"
@@ -25,15 +26,15 @@
             <el-menu-item index="1-4-1">选项1</el-menu-item>
           </el-submenu>
         </el-submenu>
-        <el-menu-item index="2" route="{name: 'zcool'}">
+        <el-menu-item index="2" route="/zcool">
           <i class="el-icon-menu"></i>
           <span slot="title">站酷</span>
         </el-menu-item>
-        <el-menu-item index="3" disabled>
+        <el-menu-item index="3" route="/">
           <i class="el-icon-document"></i>
-          <span slot="title">导航三</span>
+          <span slot="title">首页</span>
         </el-menu-item>
-        <el-menu-item index="4">
+        <el-menu-item index="4" disabled>
           <i class="el-icon-setting"></i>
           <span slot="title">导航四</span>
         </el-menu-item>
@@ -41,7 +42,7 @@
     </div>
     <div class="main" :class="sidebar && 'open'">
       <div class="header">
-        <el-button @click="sidebar = !sidebar">Sidebar</el-button>
+        <el-button @click="sidebar = !sidebar">又不是不能用</el-button>
       </div>
       <div class="container">
         <router-view></router-view>
