@@ -56,13 +56,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class Layout extends Vue {
   private sidebar: Boolean = true;
-  created() {
-    this.test();
-  }
-  private handleOpen(key, keyPath) {
+  private handleOpen(key: any, keyPath: any) {
     console.log(key, keyPath);
   }
-  private handleClose(key, keyPath) {
+  private handleClose(key: any, keyPath: any) {
     console.log(key, keyPath);
   }
   private test() {

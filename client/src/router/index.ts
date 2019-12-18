@@ -13,7 +13,7 @@ const routes = [
   {
     path: "/zcool",
     name: "zcool",
-    component: () => import('../views/zcool/index.vue')
+    component: () => import("../views/zcool/index.vue")
   },
   {
     path: "/about",
