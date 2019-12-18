@@ -22,12 +22,17 @@ export default (appInfo: EggAppInfo) => {
   // cors
   config.security = {
     domainWhiteList: [
-        'localhost:8080',
-      '127.0.0.1:8080',
-      '123.207.60.132',
-        'cbrick.netlify.com'
+        'localhost',
+        '127.0.0.1',
+        '192.168.1.3',
+        '123.207.60.132',
+        '.netlify.com'
     ],
   };
+config.cors = {
+    origin:'*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+};
   // cors end
 
   // the return config will combines to EggAppConfig
