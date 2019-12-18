@@ -24,6 +24,7 @@ export default (appInfo: EggAppInfo) => {
     domainWhiteList: [
         'http://localhost:8080',
       'http://127.0.0.1:8080',
+      'http://123.207.60.132',
         'https://cbrick.netlify.com'
     ],
   };
