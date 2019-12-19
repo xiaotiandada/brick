@@ -20,19 +20,10 @@ export default (appInfo: EggAppInfo) => {
     zcool: 'https://www.zcool.com.cn',
   };
   // cors
-  config.security = {
-    domainWhiteList: [
-        'localhost',
-        '127.0.0.1',
-        '192.168.1.3',
-        '123.207.60.132',
-        '.netlify.com'
-    ],
-  };
-config.cors = {
+  config.cors = {
     origin:'*',
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
-};
+  };
   // cors end
 
   // the return config will combines to EggAppConfig
