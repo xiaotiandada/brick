@@ -19,12 +19,11 @@ export default (appInfo: EggAppInfo) => {
   const crawlerUrl = {
     zcool: 'https://www.zcool.com.cn',
   };
-  // cors
+
   config.cors = {
-    origin:'*',
+    origin: '*',
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
   };
-  // cors end
 
   // the return config will combines to EggAppConfig
   return {
