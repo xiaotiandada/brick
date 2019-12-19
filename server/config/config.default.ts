@@ -20,11 +20,7 @@ export default (appInfo: EggAppInfo) => {
     zcool: 'https://www.zcool.com.cn',
   };
 
-  config.cors = {
-    origin: '*',
-    credentials: true,
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
-  };
+
 
   // the return config will combines to EggAppConfig
   return {
