@@ -8,7 +8,9 @@ import {
   Menu,
   Submenu,
   MenuItem,
-  MenuItemGroup
+  MenuItemGroup,
+  Pagination,
+  Loading
 } from "element-ui";
 
 Vue.use(Button)
@@ -18,6 +20,10 @@ Vue.use(Button)
   .use(Menu)
   .use(Submenu)
   .use(MenuItem)
-  .use(MenuItemGroup);
+  .use(MenuItemGroup)
+  .use(Pagination);
+
+Vue.use(Loading.directive);
+Vue.prototype.$loading = Loading.service;
 
 Vue.prototype.$message = Message;

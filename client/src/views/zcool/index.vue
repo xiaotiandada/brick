@@ -1,8 +1,8 @@
 <template>
-  <div class="zcool">
+  <div class="zcool" v-loading="loading">
     <a
-      v-for="(item, idx) in list"
-      :key="idx"
+      v-for="item in list"
+      :key="item.href"
       class="box"
       :href="item.href"
       target="_blank"
@@ -10,6 +10,20 @@
       <img :src="item.url" :alt="item.title" />
       <p>{{ item.title }}</p>
     </a>
+
+    <div class="pagination">
+      <el-pagination
+        background
+        :hide-on-single-page="true"
+        layout="prev, pager, next"
+        :current-page="Number(nowIdx)"
+        @prev-click="togglePrevPage"
+        @next-click="toggleNextPage"
+        @current-change="togglePage"
+        :total="1000"
+      >
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -17,16 +31,32 @@
 export default {
   data() {
     return {
-      list: []
+      list: [],
+      nowIdx: this.$route.query.page || 1,
+      maxIdx: 100,
+      loading: false
     };
   },
+  watch: {
+    nowIdx() {
+      this.$router.push({
+        name: this.$route.name,
+        query: {
+          page: this.nowIdx
+        }
+      });
+    }
+  },
   created() {
-    this.init();
+    this.init(this.nowIdx);
   },
   methods: {
-    async init() {
+    async init(page = 1) {
+      this.loading = true;
       await this.$API
-        .test()
+        .getZcool({
+          page
+        })
         .then(res => {
           console.log(res);
           if (res.code === 0) {
@@ -36,7 +66,26 @@ export default {
         .catch(err => {
           console.log(err);
           this.$Message.error(res.message);
+        })
+        .finally(() => {
+          this.loading = false;
         });
+    },
+    togglePrevPage() {
+      if (this.nowIdx > 1) {
+        this.nowIdx--;
+        this.init(this.nowIdx);
+      }
+    },
+    toggleNextPage() {
+      if (this.nowIdx < this.maxIdx) {
+        this.nowIdx++;
+        this.init(this.nowIdx);
+      }
+    },
+    togglePage(i) {
+      this.nowIdx = i;
+      this.init(this.nowIdx);
     }
   }
 };
@@ -45,7 +94,7 @@ export default {
 <style lang="less" scoped>
 .zcool {
   padding: 20px;
-  background-color: #f4f4f4;
+  background-color: #eaeaea;
 }
 .box {
   display: inline-block;
@@ -77,5 +126,9 @@ export default {
     overflow: hidden;
     white-space: nowrap;
   }
+}
+.pagination {
+  text-align: center;
+  margin-top: 20px;
 }
 </style>
