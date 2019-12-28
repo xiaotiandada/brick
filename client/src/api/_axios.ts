@@ -6,7 +6,8 @@ const _axios = axios.create({
   baseURL: "http://123.207.60.132:7001",
   // baseURL: "http://127.0.0.1:7001",
   timeout: 20000,
-  headers: {}
+  headers: {},
+  withCredentials: true
 });
 
 _axios.interceptors.request
