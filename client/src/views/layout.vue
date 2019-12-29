@@ -4,9 +4,12 @@
       <el-menu
         router
         default-active="2"
-        class="el-menu-vertical-demo"
+        class="menu"
         @open="handleOpen"
         @close="handleClose"
+        background-color="#409eff"
+        text-color="#f1f1f1"
+        active-text-color="#fff"
       >
         <el-submenu index="1">
           <template slot="title">
@@ -85,9 +88,13 @@ export default class Layout extends Vue {
   left: -220px;
   width: 220px;
   transition: all 0.2s;
-  background-color: #409eff;
+  background-color: #356da7;
+  box-sizing: border-box;
   &.open {
     left: 0;
+  }
+  .menu {
+    border-right: none;
   }
 }
 
@@ -104,6 +111,9 @@ export default class Layout extends Vue {
 .header {
   height: 60px;
   background-color: rgb(27, 109, 163);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
 }
 .container {
   min-height: calc(100% - 60px);
