@@ -7,6 +7,7 @@
 </template>
 
 <script lang="ts">
+import axios from "axios";
 import { Component, Vue } from "vue-property-decorator";
 import HelloWorld from "./components/HelloWorld.vue";
 import Layout from "./views/layout.vue";
@@ -17,7 +18,13 @@ import Layout from "./views/layout.vue";
     Layout
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  created() {
+    axios.get("http://127.0.0.1:7001/").then(res => {
+      console.log("res", res);
+    });
+  }
+}
 </script>
 
 <style lang="less">

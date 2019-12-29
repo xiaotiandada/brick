@@ -20,6 +20,10 @@ export default (appInfo: EggAppInfo) => {
     zcool: 'https://www.zcool.com.cn',
   };
 
+  config.security = {
+    domainWhiteList: ['localhost:8080']
+  };
+
   // the return config will combines to EggAppConfig
   return {
       ...config,
