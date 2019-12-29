@@ -7,7 +7,13 @@
       :href="item.href"
       target="_blank"
     >
-      <img :src="item.url" :alt="item.title" />
+      <el-image
+        class="cover"
+        :lazy="true"
+        :src="item.url"
+        :alt="item.title"
+        fit="cover"
+      ></el-image>
       <p>{{ item.title }}</p>
     </a>
 
@@ -112,7 +118,7 @@ export default {
   &:hover {
     transform: scale(1.04);
   }
-  img {
+  .cover {
     width: 100%;
     height: 160px;
     object-fit: cover;

@@ -8,7 +8,6 @@ import "./registerServiceWorker";
 import "./plugin/element";
 
 import API from "./api/api";
-
 // global style
 import "normalize.css";
 import "./assets/less/index.less";
