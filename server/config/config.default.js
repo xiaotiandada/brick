@@ -29,7 +29,7 @@ module.exports = appInfo => {
   };
 
   config.security = {
-    domainWhiteList: [ 'localhost', '123.207.60.132', 'netlify.com', '192.168.1.6' ],
+    domainWhiteList: [ 'localhost', '123.207.60.132', 'netlify.com', 'http://192.168.1.6' ],
     csrf: {
       enable: false,
     },
