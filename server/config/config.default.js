@@ -28,16 +28,20 @@ module.exports = appInfo => {
     zcool: 'https://www.zcool.com.cn',
   };
 
-  config.security = {
-    domainWhiteList: [ 'localhost', '123.207.60.132', 'netlify.com', 'http://192.168.1.6:8080' ],
-    csrf: {
-      enable: false,
-    },
-  };
+  // config.security = {
+  //   domainWhiteList: [ 'localhost', '123.207.60.132', 'netlify.com', 'http://192.168.1.6:8080' ],
+  //   csrf: {
+  //     enable: false,
+  //   },
+  // };
 
+  // config.cors = {
+  //   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+  //   credentials: true,
+  // };
   config.cors = {
-    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
-    credentials: true,
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
   };
 
   return {
