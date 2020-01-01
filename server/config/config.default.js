@@ -32,22 +32,6 @@ module.exports = appInfo => {
     domainWhiteList: [ 'localhost', '127.0.0.1', '123.207.60.132', 'netlify.com', '192.168.1.6' ],
   };
 
-  // config.security = {
-  //   domainWhiteList: [ 'localhost', '123.207.60.132', 'netlify.com', 'http://192.168.1.6:8080' ],
-  //   csrf: {
-  //     enable: false,
-  //   },
-  // };
-
-  // config.cors = {
-  //   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
-  //   credentials: true,
-  // };
-  // config.cors = {
-  //   origin: '*',
-  //   allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
-  // };
-
   return {
     ...config,
     ...userConfig,
