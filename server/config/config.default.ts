@@ -21,7 +21,7 @@ export default (appInfo: EggAppInfo) => {
   };
 
   config.security = {
-    domainWhiteList: ['localhost:8080']
+    domainWhiteList: [ 'localhost', '127.0.0.1', '123.207.60.132', 'netlify.com', '192.168.1.6' ],
   };
 
   // the return config will combines to EggAppConfig
