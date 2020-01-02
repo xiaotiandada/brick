@@ -6,5 +6,5 @@ export default (app: Application) => {
   router.get('/', controller.home.index);
   // -------------------------- 爬虫 ---------------------
   // 站酷
-  router.get('/api/v1/zcool', controller.home.getImgList);
+  router.get('/api/v1/zcool', controller.crawler.getImgList);
 };
