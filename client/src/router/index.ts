@@ -15,6 +15,17 @@ const routes = [
     name: "zcool",
     component: () => import("../views/zcool/index.vue")
   },
+  // matataki
+  {
+    path: "/matataki",
+    name: "matataki",
+    redirect: "/matataki/import"
+  },
+  {
+    path: "/matataki/import",
+    name: "matataki-import",
+    component: () => import("../views/matataki/import/index.vue")
+  },
   {
     path: "/about",
     name: "about",

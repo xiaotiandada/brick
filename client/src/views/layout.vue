@@ -7,9 +7,6 @@
         class="menu"
         @open="handleOpen"
         @close="handleClose"
-        background-color="#409eff"
-        text-color="#f1f1f1"
-        active-text-color="#fff"
       >
         <el-submenu index="1">
           <template slot="title">
@@ -18,7 +15,9 @@
           </template>
           <el-menu-item-group>
             <template slot="title">分组一</template>
-            <el-menu-item index="1-1">选项1</el-menu-item>
+            <el-menu-item route="/matataki/import" index="1-1"
+              >导入</el-menu-item
+            >
             <el-menu-item index="1-2">选项2</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group title="分组2">
@@ -94,7 +93,7 @@ export default class Layout extends Vue {
     left: 0;
   }
   .menu {
-    border-right: none;
+    // border-right: none;
   }
 }
 

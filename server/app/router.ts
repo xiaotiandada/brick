@@ -7,4 +7,7 @@ export default (app: Application) => {
   // -------------------------- 爬虫 ---------------------
   // 站酷
   router.get('/api/v1/zcool', controller.crawler.getImgList);
+  // -------------------- matataki -----------------
+  // 导入文字
+  router.post('/api/v1/m/post/import', controller.m.postImport);
 };

@@ -20,8 +20,17 @@ export default (appInfo: EggAppInfo) => {
     zcool: 'https://www.zcool.com.cn',
   };
 
+  // API
+  const API = {
+    // matataki api
+    mApi: 'https://api.smartsignature.io'
+  }
+
   config.security = {
     domainWhiteList: [ 'localhost', '127.0.0.1', '123.207.60.132', 'netlify.com', '192.168.1.6' ],
+    csrf: {
+      enable: false,
+    },
   };
 
   // the return config will combines to EggAppConfig
@@ -29,5 +38,6 @@ export default (appInfo: EggAppInfo) => {
       ...config,
       ...bizConfig,
       ...crawlerUrl,
+      ...API
     };
   };

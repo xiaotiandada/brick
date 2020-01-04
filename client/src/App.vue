@@ -18,13 +18,7 @@ import Layout from "./views/layout.vue";
     Layout
   }
 })
-export default class App extends Vue {
-  created() {
-    axios.get("http://127.0.0.1:7001/").then(res => {
-      console.log("res", res);
-    });
-  }
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="less">
