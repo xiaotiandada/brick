@@ -6,6 +6,9 @@ export default {
   },
   //---------------matataki--------------
   postImport(params: Object) {
-    return _axios.post("/api/v1/m/postimport", params)
+    return _axios.post("/api/v1/m/post/import", params);
+  },
+  postPublish(params: Object) {
+    return _axios.post("/api/v1/m/post/publish", params);
   }
 };

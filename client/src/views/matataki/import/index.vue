@@ -1,6 +1,12 @@
 <template>
   <div class="post">
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
+      <el-form-item label="" prop="token">
+        <el-input
+          placeholder="请输入你的平台Token"
+          v-model="ruleForm.token"
+        ></el-input>
+      </el-form-item>
       <el-form-item label="" prop="url">
         <el-input
           placeholder="请输入地址,包含http(s)://"
@@ -31,9 +37,18 @@ export default {
     };
     return {
       ruleForm: {
+        token:
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI5NTI4MjIzOTlAcXEuY29tIiwiZXhwIjoxNTc5NDE2MTE2NTA2LCJwbGF0Zm9ybSI6ImVtYWlsIiwiaWQiOjEwNTN9.vM3SRhYLYS69L14rity5Bi17gZyeGMyIwYuJwssXLdM",
         url: ""
       },
       rules: {
+        token: [
+          {
+            required: true,
+            message: "不能为空",
+            trigger: "change"
+          }
+        ],
         url: [
           {
             required: true,
@@ -57,8 +72,38 @@ export default {
     },
     async importPost(formName) {
       if (await this.setpFunc(formName)) {
-        console.log("12312");
+        await this.$API
+          .postImport({
+            url: this.ruleForm.url,
+            token: this.ruleForm.token
+          })
+          .then(res => {
+            this.postPublish({
+              title: res.data.title,
+              cover: res.data.cover,
+              content: res.data.content,
+              token: this.ruleForm.token
+            });
+          })
+          .catch(err => {
+            console.log(err);
+          });
       }
+    },
+    async postPublish({ title, cover, content, token }) {
+      await this.$API
+        .postPublish({
+          title,
+          cover,
+          content,
+          token
+        })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };

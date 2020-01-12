@@ -10,4 +10,5 @@ export default (app: Application) => {
   // -------------------- matataki -----------------
   // 导入文字
   router.post('/api/v1/m/post/import', controller.m.postImport);
+  router.post('/api/v1/m/post/publish', controller.m.postPublish);
 };

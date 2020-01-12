@@ -6,5 +6,9 @@ export default class MController extends Controller {
     const { url, token } = ctx.request.body;
     ctx.body = await ctx.service.m.postImport(url, token);
   }
+  public async postPublish() {
+    const { ctx } = this;
+    const { title, cover, content, token } = ctx.request.body;
+    ctx.body = await ctx.service.m.postPublish(title, cover, content, token);
+  }
 }
-
