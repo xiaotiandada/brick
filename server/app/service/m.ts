@@ -103,11 +103,11 @@ export default class M extends Service {
       };
     }
   }
-  public async postLkes(lastId: string, token: string) {
+  public async postLkes(firstId: string, lastId: string, token: string) {
     const { ctx } = this;
     const { mApi } = this.config;
     try {
-      console.log(111)
+      console.log(firstId, lastId, token, mApi, ctx)
     } catch (error) {
       console.log(error);
       return {

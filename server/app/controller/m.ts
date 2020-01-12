@@ -13,7 +13,7 @@ export default class MController extends Controller {
   }
   public async postLikes() {
     const { ctx } = this;
-    const { lastId, token } = ctx.request.body;
-    ctx.body = await ctx.service.m.postLkes(lastId, token);
+    const { firstId, lastId, token } = ctx.request.body;
+    ctx.body = await ctx.service.m.postLkes(firstId, lastId, token);
   }
 }
