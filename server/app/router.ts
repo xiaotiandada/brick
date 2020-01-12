@@ -11,4 +11,5 @@ export default (app: Application) => {
   // 导入文字
   router.post('/api/v1/m/post/import', controller.m.postImport);
   router.post('/api/v1/m/post/publish', controller.m.postPublish);
+  router.post('/api/v1/m/post/likes', controller.m.postPublish);
 };

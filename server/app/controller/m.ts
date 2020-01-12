@@ -11,4 +11,9 @@ export default class MController extends Controller {
     const { title, cover, content, token } = ctx.request.body;
     ctx.body = await ctx.service.m.postPublish(title, cover, content, token);
   }
+  public async postLikes() {
+    const { ctx } = this;
+    const { lastId, token } = ctx.request.body;
+    ctx.body = await ctx.service.m.postLkes(lastId, token);
+  }
 }

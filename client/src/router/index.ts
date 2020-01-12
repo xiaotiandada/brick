@@ -27,6 +27,11 @@ const routes = [
     component: () => import("../views/matataki/import/index.vue")
   },
   {
+    path: "/matataki/likes",
+    name: "matataki-likes",
+    component: () => import("../views/matataki/likes/index.vue")
+  },
+  {
     path: "/about",
     name: "about",
     // route level code-splitting

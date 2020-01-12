@@ -26,6 +26,7 @@
     "egg": "^2.6.1",
     "egg-cors": "2.2.3",
     "egg-scripts": "^2.6.0",
+    "egg-socket.io": "4.1.6",
     "qs": "6.9.1",
     "superagent": "5.1.2"
   },

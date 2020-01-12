@@ -18,7 +18,9 @@
             <el-menu-item route="/matataki/import" index="1-1"
               >导入</el-menu-item
             >
-            <el-menu-item index="1-2">选项2</el-menu-item>
+            <el-menu-item route="/matataki/likes" index="1-2"
+              >文章点赞</el-menu-item
+            >
           </el-menu-item-group>
           <el-menu-item-group title="分组2">
             <el-menu-item index="1-3">选项3</el-menu-item>

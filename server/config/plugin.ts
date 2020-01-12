@@ -10,6 +10,10 @@ const plugin: EggPlugin = {
       enable: true,
       package: 'egg-cors',
   },
+  io: {
+    enable: true,
+    package: 'egg-socket.io',
+  }
 };
 
 export default plugin;

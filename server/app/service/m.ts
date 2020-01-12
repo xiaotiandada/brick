@@ -103,4 +103,17 @@ export default class M extends Service {
       };
     }
   }
+  public async postLkes(lastId: string, token: string) {
+    const { ctx } = this;
+    const { mApi } = this.config;
+    try {
+      console.log(111)
+    } catch (error) {
+      console.log(error);
+      return {
+        code: -1,
+        message: '发生错误',
+      };
+    }
+  }
 }
