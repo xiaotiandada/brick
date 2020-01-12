@@ -22,6 +22,13 @@
         </div>
       </el-form-item>
     </el-form>
+    <img v-if="article.cover" :src="cover(article.cover)" alt="cover" />
+    <p>
+      {{ article.title }}
+    </p>
+    <p>
+      {{ article.content }}
+    </p>
   </div>
 </template>
 
@@ -61,10 +68,14 @@ export default {
             trigger: "change"
           }
         ]
-      }
+      },
+      article: Object.create(null)
     };
   },
   methods: {
+    cover(src) {
+      return src ? `https://ssimg.frontenduse.top/${src}` : "";
+    },
     setpFunc(formName) {
       return new Promise(resolve =>
         this.$refs[formName].validate(valid => resolve(valid))
@@ -78,12 +89,13 @@ export default {
             token: this.ruleForm.token
           })
           .then(res => {
-            this.postPublish({
-              title: res.data.title,
-              cover: res.data.cover,
-              content: res.data.content,
-              token: this.ruleForm.token
-            });
+            this.article = res.data;
+            // this.postPublish({
+            //   title: res.data.title,
+            //   cover: res.data.cover,
+            //   content: res.data.content,
+            //   token: this.ruleForm.token
+            // });
           })
           .catch(err => {
             console.log(err);

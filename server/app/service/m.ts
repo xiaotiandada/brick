@@ -32,10 +32,6 @@ export default class M extends Service {
       return ''
     }
   }
-  /**
-   * postImport to you
-   * @param url - your url
-   */
   public async postImport(url: string, token: string) {
     const { ctx } = this;
     const { mApi } = this.config;
