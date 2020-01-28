@@ -34,14 +34,23 @@
           <i class="el-icon-menu"></i>
           <span slot="title">站酷</span>
         </el-menu-item>
-        <el-menu-item index="3" route="/">
-          <i class="el-icon-document"></i>
-          <span slot="title">首页</span>
-        </el-menu-item>
-        <el-menu-item index="4" disabled>
-          <i class="el-icon-setting"></i>
-          <span slot="title">导航四</span>
-        </el-menu-item>
+        <el-submenu index="3">
+          <template slot="title">
+            <i class="el-icon-location"></i>
+            <span>Animation</span>
+          </template>
+          <el-menu-item-group>
+            <template slot="title">分组一</template>
+            <el-menu-item route="/animation/one" index="3-1">One</el-menu-item>
+            <el-menu-item route="/animation/two" index="3-2">Two</el-menu-item>
+            <el-menu-item route="/animation/three" index="3-2"
+              >Three</el-menu-item
+            >
+            <el-menu-item route="/animation/four" index="3-2"
+              >Four</el-menu-item
+            >
+          </el-menu-item-group>
+        </el-submenu>
       </el-menu>
     </div>
     <div class="main" :class="sidebar && 'open'">

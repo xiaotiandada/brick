@@ -31,6 +31,32 @@ const routes = [
     name: "matataki-likes",
     component: () => import("../views/matataki/likes/index.vue")
   },
+  // animation
+  {
+    path: "/animation",
+    name: "animation",
+    redirect: "/animation/one"
+  },
+  {
+    path: "/animation/one",
+    name: "animation-one",
+    component: () => import("../views/animation/one.vue")
+  },
+  {
+    path: "/animation/two",
+    name: "animation-two",
+    component: () => import("../views/animation/two.vue")
+  },
+  {
+    path: "/animation/three",
+    name: "animation-three",
+    component: () => import("../views/animation/three.vue")
+  },
+  {
+    path: "/animation/four",
+    name: "animation-four",
+    component: () => import("../views/animation/four.vue")
+  },
   {
     path: "/about",
     name: "about",
