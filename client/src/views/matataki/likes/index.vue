@@ -2,13 +2,22 @@
   <div class="likes">
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
       <el-form-item label prop="token">
-        <el-input placeholder="请输入你的平台Token" v-model="ruleForm.token"></el-input>
+        <el-input
+          placeholder="请输入你的平台Token"
+          v-model="ruleForm.token"
+        ></el-input>
       </el-form-item>
       <el-form-item label prop="firstId">
-        <el-input placeholder="请输入开始Id" v-model="ruleForm.firstId"></el-input>
+        <el-input
+          placeholder="请输入开始Id"
+          v-model="ruleForm.firstId"
+        ></el-input>
       </el-form-item>
       <el-form-item label prop="lastId">
-        <el-input placeholder="请输入结束Id" v-model="ruleForm.lastId"></el-input>
+        <el-input
+          placeholder="请输入结束Id"
+          v-model="ruleForm.lastId"
+        ></el-input>
       </el-form-item>
       <el-form-item>
         <div class="btn">
@@ -19,11 +28,13 @@
     </el-form>
 
     <div class="message">
-      <p 
-        v-for="(item, index) in chat" 
-        :key="index" 
-        :class="item.code === 0 ? 'success' : 'fail'">
-        {{item.message}}</p>
+      <p
+        v-for="(item, index) in chat"
+        :key="index"
+        :class="item.code === 0 ? 'success' : 'fail'"
+      >
+        {{ item.message }}
+      </p>
     </div>
   </div>
 </template>
@@ -35,7 +46,7 @@ const socket = io("http://127.0.0.1:7001");
 @Component
 export default class Likes extends Vue {
   private sidebar: Boolean = true;
-  private chat: string[] = [];
+  private chat: Array<object> = [];
 
   private ruleForm = {
     token:
@@ -68,25 +79,27 @@ export default class Likes extends Vue {
   };
 
   created() {
-    socket.on("connect", function() { console.log('connect') });
+    socket.on("connect", function() {
+      console.log("connect");
+    });
     socket.on("event", function(data) {});
     socket.on("disconnect", function() {});
-    socket.on("res", res => {
+    socket.on("res", (res: Object) => {
       console.log(res);
       this.chat.push(res);
     });
   }
-  private setpFunc(formName) {
+  private setpFunc(formName: String) {
     return new Promise(resolve =>
-      this.$refs[formName].validate(valid => resolve(valid))
+      this.$refs[formName].validate((valid: Boolean) => resolve(valid))
     );
   }
-  private async start(formName) {
+  private async start(formName: String) {
     if (await this.setpFunc(formName)) {
       socket.emit("chat", {
         token: this.ruleForm.token,
         firstId: this.ruleForm.firstId,
-        lastId: this.ruleForm.lastId,
+        lastId: this.ruleForm.lastId
       });
     }
   }
