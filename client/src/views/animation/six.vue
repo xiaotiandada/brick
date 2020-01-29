@@ -72,6 +72,7 @@ export default {
         cycle: {
           y: [-50, 50]
         },
+        ease: Linear.easeNone,
         // https://codepen.io/GreenSock/full/jdawKx
         stagger: {
           from: "center",
