@@ -19,6 +19,9 @@
               >导入</el-menu-item
             >
             <el-menu-item route="/matataki/likes" index="1-2"
+              >关注用户</el-menu-item
+            >
+                   <el-menu-item route="/matataki/likes" index="1-2"
               >文章点赞</el-menu-item
             >
           </el-menu-item-group>

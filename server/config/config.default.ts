@@ -27,6 +27,21 @@ export default (appInfo: EggAppInfo) => {
     },
   };
 
+  // egg-socketio
+  config.io = {
+    init: { }, // passed to engine.io
+    namespace: {
+      '/': {
+        connectionMiddleware: [],
+        packetMiddleware: [],
+      },
+      '/example': {
+        connectionMiddleware: [],
+        packetMiddleware: [],
+      },
+    },
+  };
+
   // the return config will combines to EggAppConfig
   return {
       ...config,
