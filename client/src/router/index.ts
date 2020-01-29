@@ -63,6 +63,11 @@ const routes = [
     component: () => import("../views/animation/five.vue")
   },
   {
+    path: "/animation/six",
+    name: "animation-six",
+    component: () => import("../views/animation/six.vue")
+  },
+  {
     path: "/about",
     name: "about",
     // route level code-splitting

@@ -52,6 +52,7 @@
             <el-menu-item route="/animation/five" index="3-5"
               >Five</el-menu-item
             >
+            <el-menu-item route="/animation/six" index="3-6">Six</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
       </el-menu>
