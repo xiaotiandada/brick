@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h1 class="animation-title">Vue list show</h1>
+
     <button @click="add">add</button>
     <button @click="remove">remove</button>
     <button @click="shuffle">shuffle</button>

@@ -43,11 +43,14 @@
             <template slot="title">分组一</template>
             <el-menu-item route="/animation/one" index="3-1">One</el-menu-item>
             <el-menu-item route="/animation/two" index="3-2">Two</el-menu-item>
-            <el-menu-item route="/animation/three" index="3-2"
+            <el-menu-item route="/animation/three" index="3-3"
               >Three</el-menu-item
             >
-            <el-menu-item route="/animation/four" index="3-2"
+            <el-menu-item route="/animation/four" index="3-4"
               >Four</el-menu-item
+            >
+            <el-menu-item route="/animation/five" index="3-5"
+              >Five</el-menu-item
             >
           </el-menu-item-group>
         </el-submenu>

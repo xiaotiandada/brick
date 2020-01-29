@@ -1,20 +1,44 @@
 <template>
-  <div class="list">
-    <div
-      class="list-item"
-      v-for="item in 100"
-      :key="item"
-      :style="{ transitionDelay: item + 100 + 'ms' }"
-    >
-      {{ item }}
-    </div>
+  <div>
+    <h1 class="animation-title">Bilibili list</h1>
+    <transition-group tag="div" class="list" name="timeline-appear">
+      <div
+        class="list-item"
+        v-for="item in list"
+        :key="item"
+        :style="{ transitionDelay: delay() + 'ms' }"
+      >
+        {{ item }}
+      </div>
+    </transition-group>
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      list: 0
+    };
+  },
+  created() {
+    setTimeout(() => {
+      this.list = 20;
+    }, 300);
+  },
+  methods: {
+    delay() {
+      return Math.floor(Math.random() * 400) + 1;
+    }
+  }
+};
+</script>
+
 <style lang="less" scoped>
-// 适合一个个轮流展示的那种 bilibili style
-// 他是随机一个1-400ms的 行内 style transition-delay use js
-// 再想想
+//  bilibili list
+// random 1-400ms, style transition-delay
+// css scale0.9 - 1, opacity 0
+//  use transition-group show animation
 .list {
   width: 800px;
   margin: 0 auto;
@@ -30,9 +54,17 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    zoom: 1;
-    transition: 0.3s;
-    opacity: 1;
   }
+}
+
+.timeline-appear-enter-active,
+.timeline-appear-leave-active {
+  transition: all 0.4s;
+}
+
+.timeline-appear-enter,
+.timeline-apper-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
 }
 </style>

@@ -1,12 +1,16 @@
 <template>
-  <div class="list">
-    <div
-      class="list-item"
-      v-for="item in 100"
-      :key="item"
-      :style="{ animationDelay: item * 0.1 + 's' }"
-    >
-      {{ item }}
+  <div>
+    <h1 class="animation-title">适合一个个轮流展示的那种 js style</h1>
+
+    <div class="list">
+      <div
+        class="list-item"
+        v-for="item in 100"
+        :key="item"
+        :style="{ animationDelay: item * 0.1 + 's' }"
+      >
+        {{ item }}
+      </div>
     </div>
   </div>
 </template>

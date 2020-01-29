@@ -1,6 +1,10 @@
 <template>
-  <div class="list">
-    <div class="list-item" v-for="item in 100" :key="item">{{ item }}</div>
+  <div>
+    <h1 class="animation-title">适合一个个轮流展示的那种 css style</h1>
+
+    <div class="list">
+      <div class="list-item" v-for="item in 100" :key="item">{{ item }}</div>
+    </div>
   </div>
 </template>
 
