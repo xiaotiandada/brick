@@ -21,7 +21,7 @@
             <el-menu-item route="/matataki/likes" index="1-2"
               >关注用户</el-menu-item
             >
-                   <el-menu-item route="/matataki/likes" index="1-2"
+            <el-menu-item route="/matataki/likes" index="1-2"
               >文章点赞</el-menu-item
             >
           </el-menu-item-group>
@@ -58,6 +58,16 @@
             <el-menu-item route="/animation/six" index="3-6">Six</el-menu-item>
             <el-menu-item route="/animation/seven" index="3-7"
               >Seven</el-menu-item
+            >
+            <el-menu-item route="/animation/eight" index="3-8"
+              >Eight</el-menu-item
+            >
+            <el-menu-item route="/animation/nine" index="3-9"
+              >Nine</el-menu-item
+            >
+            <el-menu-item route="/animation/ten" index="3-9">Ten</el-menu-item>
+            <el-menu-item route="/animation/eleven" index="3-9"
+              >Eleven</el-menu-item
             >
           </el-menu-item-group>
         </el-submenu>
