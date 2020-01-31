@@ -45,6 +45,7 @@ export default class Layout extends Vue {
   transition: all 0.2s;
   background-color: #356da7;
   box-sizing: border-box;
+  overflow: auto;
   &.open {
     left: 0;
   }

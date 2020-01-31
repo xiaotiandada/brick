@@ -51,85 +51,83 @@ const routes = [
         meta: { title: "Likes", icon: "likes" }
       }
     ]
-  }
-  // ---------------------------------------
-  // matataki
-  // {
-  //   path: "/matataki",
-  //   name: "matataki",
-  //   redirect: "/matataki/import"
-  // },
-  // {
-  //   path: "/matataki/import",
-  //   name: "matataki-import",
-  //   component: () => import("../views/matataki/import/index.vue")
-  // },
-  // {
-  //   path: "/matataki/likes",
-  //   name: "matataki-likes",
-  //   component: () => import("../views/matataki/likes/index.vue")
-  // },
+  },
   // // animation
-  // {
-  //   path: "/animation",
-  //   name: "animation",
-  //   redirect: "/animation/one"
-  // },
-  // {
-  //   path: "/animation/one",
-  //   name: "animation-one",
-  //   component: () => import("../views/animation/one.vue")
-  // },
-  // {
-  //   path: "/animation/two",
-  //   name: "animation-two",
-  //   component: () => import("../views/animation/two.vue")
-  // },
-  // {
-  //   path: "/animation/three",
-  //   name: "animation-three",
-  //   component: () => import("../views/animation/three.vue")
-  // },
-  // {
-  //   path: "/animation/four",
-  //   name: "animation-four",
-  //   component: () => import("../views/animation/four.vue")
-  // },
-  // {
-  //   path: "/animation/five",
-  //   name: "animation-five",
-  //   component: () => import("../views/animation/five.vue")
-  // },
-  // {
-  //   path: "/animation/six",
-  //   name: "animation-six",
-  //   component: () => import("../views/animation/six.vue")
-  // },
-  // {
-  //   path: "/animation/seven",
-  //   name: "animation-seven",
-  //   component: () => import("../views/animation/seven.vue")
-  // },
-  // {
-  //   path: "/animation/eight",
-  //   name: "animation-eight",
-  //   component: () => import("../views/animation/eight.vue")
-  // },
-  // {
-  //   path: "/animation/nine",
-  //   name: "animation-nine",
-  //   component: () => import("../views/animation/nine.vue")
-  // },
-  // {
-  //   path: "/animation/ten",
-  //   name: "animation-ten",
-  //   component: () => import("../views/animation/ten.vue")
-  // },
-  // {
-  //   path: "/animation/eleven",
-  //   name: "animation-eleven",
-  //   component: () => import("../views/animation/eleven.vue")
-  // },
+  {
+    path: "/animation",
+    component: Layout,
+    redirect: "/animation/one",
+    meta: { title: "Animation", icon: "animation" },
+    children: [
+      {
+        path: "one",
+        name: "animation-one",
+        component: () => import("../views/animation/one.vue"),
+        meta: { title: "one", icon: "one" }
+      },
+      {
+        path: "two",
+        name: "animation-two",
+        component: () => import("../views/animation/two.vue"),
+        meta: { title: "two", icon: "two" }
+      },
+      {
+        path: "three",
+        name: "animation-three",
+        component: () => import("../views/animation/three.vue"),
+        meta: { title: "three", icon: "three" }
+      },
+      {
+        path: "four",
+        name: "animation-four",
+        component: () => import("../views/animation/four.vue"),
+        meta: { title: "four", icon: "four" }
+      },
+      {
+        path: "five",
+        name: "animation-five",
+        component: () => import("../views/animation/five.vue"),
+        meta: { title: "five", icon: "five" }
+      },
+      {
+        path: "six",
+        name: "animation-six",
+        component: () => import("../views/animation/six.vue"),
+        meta: { title: "six", icon: "six" }
+      },
+      {
+        path: "seven",
+        name: "animation-seven",
+        component: () => import("../views/animation/seven.vue"),
+        meta: { title: "seven", icon: "seven" }
+      },
+      {
+        path: "eight",
+        name: "animation-eight",
+        component: () => import("../views/animation/eight.vue"),
+        meta: { title: "eight", icon: "eight" }
+      },
+      {
+        path: "nine",
+        name: "animation-nine",
+        component: () => import("../views/animation/nine.vue"),
+        meta: { title: "nine", icon: "nine" }
+      },
+      {
+        path: "ten",
+        name: "animation-ten",
+        component: () => import("../views/animation/ten.vue"),
+        meta: { title: "ten", icon: "ten" }
+      },
+      {
+        path: "eleven",
+        name: "animation-eleven",
+        component: () => import("../views/animation/eleven.vue"),
+        meta: { title: "eleven", icon: "eleven" }
+      }
+    ]
+  }
+
   // {
   //   path: "/about",
   //   name: "about",
