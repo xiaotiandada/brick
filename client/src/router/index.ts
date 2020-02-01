@@ -124,6 +124,12 @@ const routes = [
         name: "animation-eleven",
         component: () => import("../views/animation/eleven.vue"),
         meta: { title: "eleven", icon: "eleven" }
+      },
+      {
+        path: "scrollmagic",
+        name: "animation-scrollmagic",
+        component: () => import("../views/animation/scrollmagic.vue"),
+        meta: { title: "scrollmagic", icon: "scrollmagic" }
       }
     ]
   }

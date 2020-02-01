@@ -37,6 +37,7 @@ export default class Layout extends Vue {
 
   private toggleStatus(status: Boolean) {
     this.status = status;
+    localStorage.setItem("maximize", String(status));
   }
 }
 </script>

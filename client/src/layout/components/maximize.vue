@@ -17,6 +17,7 @@ export default class Maximize extends Vue {
 
   @Emit("toggleStatus")
   private toggleStatus(status: Boolean) {
+    // animation
     return status;
   }
 }
