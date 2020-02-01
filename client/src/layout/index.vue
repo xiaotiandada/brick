@@ -1,29 +1,43 @@
 <template>
   <div class="layout">
-    <div class="sidebar" :class="sidebar && 'open'">
-      <sidebar></sidebar>
-    </div>
-    <div class="main" :class="sidebar && 'open'">
-      <div class="header">
-        <el-button @click="sidebar = !sidebar">又不是不能用</el-button>
+    <template v-if="status">
+      <div class="sidebar" :class="sidebar && 'open'">
+        <sidebar></sidebar>
       </div>
-      <div class="container">
-        <router-view></router-view>
+      <div class="main" :class="sidebar && 'open'">
+        <div class="header">
+          <el-button @click="sidebar = !sidebar">又不是不能用</el-button>
+        </div>
+        <div class="container">
+          <router-view></router-view>
+        </div>
       </div>
-    </div>
+    </template>
+    <template v-else>
+      <router-view></router-view>
+    </template>
+    <maximize @toggleStatus="toggleStatus" :status="status"></maximize>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import sidebar from "./components/sidebar.vue";
+import maximize from "./components/maximize.vue";
 @Component({
   components: {
-    sidebar
+    sidebar,
+    maximize
   }
 })
 export default class Layout extends Vue {
   private sidebar: Boolean = true;
+  private status: Boolean =
+    localStorage.getItem("maximize") === "true" ? true : false;
+
+  private toggleStatus(status: Boolean) {
+    this.status = status;
+  }
 }
 </script>
 
