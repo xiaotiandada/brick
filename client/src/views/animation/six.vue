@@ -28,11 +28,29 @@
 </template>
 
 <script>
+import loadScript from "@/utils/load_script";
 export default {
   // https://greensock.com/scrollmagic/
   mounted() {
-    this.stage();
-    this.stage1();
+    this.$nextTick(() => {
+      let scriptSrc = [
+        "https://cdn.bootcss.com/gsap/latest/TweenMax.min.js",
+        "https://cdn.bootcss.com/ScrollMagic/2.0.7/ScrollMagic.min.js",
+        "https://cdn.bootcss.com/ScrollMagic/2.0.7/plugins/animation.gsap.min.js",
+        "https://cdn.bootcss.com/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"
+      ];
+      let PromiseLoadScript = scriptSrc.map(i => loadScript(i));
+      let timer = null;
+      Promise.all(PromiseLoadScript)
+        .then(res => {
+          console.log("done", res);
+          this.stage();
+          this.stage1();
+        })
+        .catch(err => {
+          console.log("error", err);
+        });
+    });
   },
   methods: {
     stage() {
@@ -55,12 +73,12 @@ export default {
         triggerElement: "#stage",
         triggerHook: 0
       })
-        .addIndicators({
-          colorTrigger: "white",
-          colorStart: "white",
-          colorEnd: "white",
-          indent: 5
-        })
+        // .addIndicators({
+        //   colorTrigger: "white",
+        //   colorStart: "white",
+        //   colorEnd: "white",
+        //   indent: 5
+        // })
         .setTween(tl)
         .addTo(controller);
     },
@@ -85,12 +103,12 @@ export default {
         duration: "50%",
         triggerHook: 0
       })
-        .addIndicators({
-          colorTrigger: "white",
-          colorStart: "white",
-          colorEnd: "white",
-          indent: 5
-        })
+        // .addIndicators({
+        //   colorTrigger: "white",
+        //   colorStart: "white",
+        //   colorEnd: "white",
+        //   indent: 5
+        // })
         .setTween(tl)
         .addTo(controller);
     }

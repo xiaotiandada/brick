@@ -20,9 +20,13 @@
 </template>
 
 <style lang="less" scoped>
+.home {
+  height: 100%;
+}
 .screen {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  // height: 100vh; // 都可以 100% 需要父级100%
   display: flex;
   flex-direction: column;
   align-items: center;
