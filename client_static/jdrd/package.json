@@ -10,5 +10,9 @@
   "devDependencies": {
     "less": "3.11.1",
     "parcel-bundler": "1.12.4"
+  },
+  "dependencies": {
+    "lodash": "4.17.15",
+    "sine-waves": "0.3.0"
   }
 }
