@@ -42,7 +42,7 @@ const setWaves = () => {
 
     // Specific how much the width of the canvas the waves should be
     // This can either be a number or a percent
-    waveWidth: "400%",
+    wavesWidth: "400%",
 
     // An array of wave options
     waves: [
