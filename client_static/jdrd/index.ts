@@ -1,15 +1,19 @@
 import { SineWaves } from "sine-waves";
+import lottie from "lottie-web";
+
+console.log('lottie', lottie)
+
 // import throttle from 'lodash/throttle'
 
 // set waves width
-const setWavesWidth = () => {
-  const waves = document.getElementById("waves");
-  const clientWidth =
-    document.body.clientWidth || document.documentElement.clientWidth;
+// const setWavesWidth = () => {
+//   const waves = document.getElementById("waves");
+//   const clientWidth =
+//     document.body.clientWidth || document.documentElement.clientWidth;
 
-  waves.style.width = clientWidth + "px";
-  waves.width = clientWidth;
-};
+//   waves.style.width = clientWidth + "px";
+//   waves.width = clientWidth;
+// };
 
 // setWavesWidth()
 
@@ -79,4 +83,33 @@ const setWaves = () => {
   });
 };
 
+
+const setLottie = () => {
+  let elem = document.querySelectorAll('.designbox_colomn li.designbox_colomn_li') as NodeListOf<HTMLElement>
+
+  for (let i = 0; i < elem.length; i++) {
+    let el = elem[i]
+    let lo = lottie.loadAnimation({
+      container: el.querySelector('.designbox_colomn_svgbox .guanggao_design'), // the dom element that will contain the animation
+      renderer: 'svg',
+      autoplay: false,
+      path: 'https://storage.360buyimg.com/jdrd-misc/index/lottie_json/picture_marking.json?time=201912041342' // the path to the animation json
+    });
+
+    el.onmouseenter = function() {
+      lo.setDirection(1)
+      lo.play()
+    }
+
+    el.onmouseleave = function(e) {
+      console.log('mouseout')
+      lo.setSpeed(2)
+      lo.setDirection(-1)
+      lo.play()
+    }
+  }
+}
+
+
 setWaves();
+setLottie()
