@@ -13,7 +13,11 @@ const plugin: EggPlugin = {
   io: {
     enable: true,
     package: 'egg-socket.io',
-  }
+  },
+  mysql: {
+    enable: true,
+    package: 'egg-mysql',
+  },
 };
 
 export default plugin;
