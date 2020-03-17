@@ -5,4 +5,9 @@ export default class AccountController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.account.registered(ctx.request.body);
   }
+
+  public async verifyUser() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.account.verifyUser(ctx.request.body.username);
+  }
 }

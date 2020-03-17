@@ -8,6 +8,7 @@ export default (app: Application) => {
   // --------------------------- 账号 ------------------------------------
   // 注册
   router.post('/api/v1/registered', controller.account.registered);
+  router.post('/api/v1/verifyUser', controller.account.verifyUser);
   // 登录
 
   // -------------------------- 爬虫 ---------------------

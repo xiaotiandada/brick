@@ -96,6 +96,29 @@ export default class Account extends Service {
     }
   }
 
+  // 查询账号是否存在
+  public async verifyUser(username: string) {
+    if (!username) {
+      return {
+        code: -1,
+        message: '用户名不能为空',
+      };
+    }
+    const res = await this.app.mysql.get('account', { username });
+    if (res) {
+      return {
+        code: 0,
+        message: '用户已存在',
+      };
+    } else {
+      return {
+        code: -1,
+        message: '用户不存在',
+      };
+    }
+
+  }
+
   // 注册
   public async registered(data: RegisteredType) {
     if (isNull(data)) {
