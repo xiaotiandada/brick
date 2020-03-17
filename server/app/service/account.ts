@@ -81,7 +81,7 @@ export default class Account extends Service {
           };
         }
       } catch (e) {
-        console.log(e)
+        console.log(e);
         this.ctx.logger.error(new Error(`registeredAccount: ${e}`));
         return {
           code: -1,
@@ -117,6 +117,24 @@ export default class Account extends Service {
       };
     }
 
+  }
+
+  // 登录
+  public async login(data: RegisteredType) {
+    if (isNull(data)) {
+      return {
+        code: -1,
+        message: 'error',
+      };
+    }
+    // 查用户
+    // 校验密码
+    // 返回token
+    console.log('data', data)
+    return {
+      code: -1,
+      message: 'token',
+    };
   }
 
   // 注册

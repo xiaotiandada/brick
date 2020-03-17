@@ -8,8 +8,10 @@ export default (app: Application) => {
   // --------------------------- 账号 ------------------------------------
   // 注册
   router.post('/api/v1/registered', controller.account.registered);
+  // 校验用户
   router.post('/api/v1/verifyUser', controller.account.verifyUser);
   // 登录
+  router.post('/api/v1/login', controller.account.login);
 
   // -------------------------- 爬虫 ---------------------
   // 站酷
