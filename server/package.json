@@ -29,6 +29,7 @@
     "egg-mysql": "3.0.0",
     "egg-scripts": "^2.6.0",
     "egg-socket.io": "4.1.6",
+    "jsonwebtoken": "8.5.1",
     "qs": "6.9.1",
     "superagent": "5.1.2"
   },
