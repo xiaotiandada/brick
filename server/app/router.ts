@@ -13,7 +13,11 @@ export default (app: Application) => {
   // 登录
   router.post('/api/v1/login', controller.account.login);
   // 修改密码
+  // TODO: 邮箱验证、手机号码验证
   router.post('/api/v1/resetPassword', controller.account.resetPassword);
+  // 删除用户
+  // TODO: 需要一些安全验证和清理数据
+  router.delete('/api/v1/deleteUser', controller.account.deleteUser);
 
   // -------------------------- 爬虫 ---------------------
   // 站酷

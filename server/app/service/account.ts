@@ -236,7 +236,7 @@ export default class Account extends Service {
     }
 
     try {
-      // 查询hash
+      // 查询
       const userInfoRes = await this.app.mysql.get('account', { username: data.username });
       // 加密
       const bcrypthHash = await this.bcryptHash(data.password);
@@ -263,6 +263,41 @@ export default class Account extends Service {
       return {
         code: -1,
         message: '更新失败',
+      }
+    }
+  }
+
+  // 删除用户
+  public async deleteUser(data: RegisteredType) {
+    if (isNull(data)) {
+      return {
+        code: -1,
+        message: 'error',
+      };
+    }
+    try {
+      // 删除
+      const deleteResult = await this.app.mysql.delete('account', {
+        username: data.username,
+      });
+      if (deleteResult.affectedRows === 1) {
+        return {
+          code: 0,
+          message: '删除成功',
+        }
+      } else {
+        this.ctx.logger.error(new Error(`delete user fail: ${deleteResult}`));
+        return {
+          code: -1,
+          message: '删除失败',
+        }
+      }
+    } catch (e) {
+      console.log(e);
+      this.ctx.logger.error(new Error(`delete user fail: ${e}`));
+      return {
+        code: -1,
+        message: '删除失败',
       }
     }
   }
