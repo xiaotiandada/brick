@@ -15,4 +15,9 @@ export default class AccountController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.account.login(ctx.request.body);
   }
+
+  public async resetPassword() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.account.resetPassword(ctx.request.body);
+  }
 }

@@ -12,6 +12,8 @@ export default (app: Application) => {
   router.post('/api/v1/verifyUser', controller.account.verifyUser);
   // 登录
   router.post('/api/v1/login', controller.account.login);
+  // 修改密码
+  router.post('/api/v1/resetPassword', controller.account.resetPassword);
 
   // -------------------------- 爬虫 ---------------------
   // 站酷

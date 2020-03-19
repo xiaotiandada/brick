@@ -45,26 +45,44 @@ export default class Account extends Service {
   }
 
   /**
+   * 加密
+   * @param data
+   */
+  private async bcryptHash(data: string) {
+    const saltRounds = 10; // bcrypt default
+    return await bcrypt.hash(data, saltRounds);
+  }
+
+  /**
+   * 校验
+   * @param data
+   * @param hash
+   */
+  private async bcryptCompare(data: string, hash: string) {
+   return await bcrypt.compare(data, hash)
+  }
+
+  /**
    * 注册账号
    * @param data
    */
   private async registeredAccount(data: RegisteredType) {
     const verifyResult = await this.verifyUsername(data.username);
     if (!verifyResult) {
-      const saltRounds = 10; // bcrypt default
       try {
         // 加密
-        const res = await bcrypt.hash(data.password, saltRounds);
+        const res = await this.bcryptHash(data.password);
         // 插入账号
         const result = await this.app.mysql.insert('account', {
           username: data.username,
           password: res,
-          timestamp: new Date(),
+          timestamp: this.app.mysql.literals.now,
         });
 
         // 判断插入成功
         if (result.affectedRows === 1) {
           try {
+            // token
             const token = this.jwtCreate(data.username);
             return {
               code: 0,
@@ -127,14 +145,71 @@ export default class Account extends Service {
         message: 'error',
       };
     }
-    // 查用户
-    // 校验密码
-    // 返回token
-    console.log('data', data)
-    return {
-      code: -1,
-      message: 'token',
-    };
+
+    // 更新登录时间和ip地址
+    const updateLastTime = async (id: number) => {
+      try {
+        const result = await this.app.mysql.update('account', {
+          id,
+          lasttime: this.app.mysql.literals.now,
+          ip: this.ctx.ip,
+        });
+        if (result.affectedRows === 1) {
+          console.log('update lasttime success');
+        } else {
+          console.log('update lasttime fail');
+          this.ctx.logger.error(new Error('update lasttime fail'));
+        }
+      } catch (e) {
+        console.log(e)
+        this.ctx.logger.error(new Error(`update lasttime fail, ${e}`));
+      }
+    }
+
+    try {
+      // 查用户
+      const verifyUserRes = await this.verifyUser(data.username);
+      if (verifyUserRes.code === 0) {
+        // 校验密码
+
+        // 查询hash
+        const userInfoRes = await this.app.mysql.get('account', { username: data.username });
+        // 校验
+        const compareRes = await this.bcryptCompare(data.password, userInfoRes.password);
+        if (compareRes) {
+          // 成功 返回token
+          const token = this.jwtCreate(data.username);
+
+          // 更新数据
+          await updateLastTime(userInfoRes.id);
+
+          return {
+            code: 0,
+            data: token,
+            message: '成功',
+          };
+        } else {
+          // 失败
+          return {
+            code: -1,
+            message: '账号或密码错误',
+          }
+        }
+      } else {
+        // 没有用户
+        return {
+          code: -1,
+          message: '账号或密码错误',
+        }
+      }
+    } catch (e) {
+      console.log(e);
+      this.ctx.logger.error(new Error(`loginError: ${e}`));
+      return {
+        code: -1,
+        message: '登录失败',
+      }
+    }
   }
 
   // 注册
@@ -149,5 +224,46 @@ export default class Account extends Service {
       username: data.username,
       password: data.password,
     });
+  }
+
+  // 修改密码
+  public async resetPassword(data: RegisteredType) {
+    if (isNull(data)) {
+      return {
+        code: -1,
+        message: 'error',
+      };
+    }
+
+    try {
+      // 查询hash
+      const userInfoRes = await this.app.mysql.get('account', { username: data.username });
+      // 加密
+      const bcrypthHash = await this.bcryptHash(data.password);
+      // 更新密码
+      const result = await this.app.mysql.update('account', {
+        id: userInfoRes.id,
+        password: bcrypthHash,
+      });
+      if (result.affectedRows === 1) {
+        return {
+          code: 0,
+          message: '更新成功',
+        }
+      } else {
+        this.ctx.logger.error(new Error('update password fail'));
+        return {
+          code: -1,
+          message: '更新失败',
+        }
+      }
+    } catch (e) {
+      console.log(e)
+      this.ctx.logger.error(new Error(`update password fail: ${e}`));
+      return {
+        code: -1,
+        message: '更新失败',
+      }
+    }
   }
 }
