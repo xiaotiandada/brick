@@ -25,6 +25,17 @@ export default (app: Application) => {
   // 自动控制
   router.post('/api/v1/transactionAuto', controller.transaction.transactionAuto);
 
+  // ---------------------------- jmeter --------------------------------------
+  // 初始化数据
+  router.post('/api/v1/initJmeterData', controller.jmeter.initJmeterData);
+  // 直接返回数据
+  router.post('/api/v1/jmeter', controller.jmeter.jmeter);
+  router.post('/api/v1/jmeter', controller.jmeter.jmeter);
+  // 查询数据库返回数据
+  router.post('/api/v1/jmeterDbs', controller.jmeter.jmeterDbs);
+  // redis返回数据
+  router.post('/api/v1/jmeterRedis', controller.jmeter.jmeterRedis);
+
   // -------------------------- 爬虫 ---------------------
   // 站酷
   router.get('/api/v1/zcool', controller.crawler.getImgList);
