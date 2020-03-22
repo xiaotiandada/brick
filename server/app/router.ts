@@ -19,6 +19,12 @@ export default (app: Application) => {
   // TODO: 需要一些安全验证和清理数据
   router.delete('/api/v1/deleteUser', controller.account.deleteUser);
 
+  // ---------------------------- 事务 ---------------------------
+  // 手动控制
+  router.post('/api/v1/transaction', controller.transaction.transaction);
+  // 自动控制
+  router.post('/api/v1/transactionAuto', controller.transaction.transactionAuto);
+
   // -------------------------- 爬虫 ---------------------
   // 站酷
   router.get('/api/v1/zcool', controller.crawler.getImgList);
