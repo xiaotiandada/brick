@@ -8,10 +8,15 @@ export default class Transaction extends Service {
   public async transaction() {
     const conn = await this.app.mysql.beginTransaction(); // 初始化事务
 
+    const Literal = this.app.mysql.literals.Literal;
+
     try {
       const time = Date.now();
+      const first = 'xiao';
+      const last = 'lei';
       await conn.insert('transaction', {
         username: time,
+        nickname: new Literal(`CONCAT("${first}", "${last}")`),
       });  // 第一步操作
 
       const options = {
