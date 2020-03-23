@@ -29,11 +29,14 @@ export default (app: Application) => {
   // 初始化数据
   router.post('/api/v1/initJmeterData', controller.jmeter.initJmeterData);
   // 直接返回数据
-  router.post('/api/v1/jmeter', controller.jmeter.jmeter);
+  // 500 20 25.046335721084006
+  router.get('/api/v1/jmeter', controller.jmeter.jmeter);
   // 查询数据库返回数据
-  router.post('/api/v1/jmeterDbs', controller.jmeter.jmeterDbs);
+  // 500 20 25.047590421801424
+  router.get('/api/v1/jmeterDbs', controller.jmeter.jmeterDbs);
   // redis返回数据
-  router.post('/api/v1/jmeterRedis', controller.jmeter.jmeterRedis);
+  // 500 20 25.042572373034158
+  router.get('/api/v1/jmeterRedis', controller.jmeter.jmeterRedis);
 
   // -------------------------- 爬虫 ---------------------
   // 站酷
