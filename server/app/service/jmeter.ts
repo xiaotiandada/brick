@@ -1,6 +1,7 @@
 import { Service } from 'egg';
 import { isNull, componse } from '../public/utils/utils';
 
+// 默认数据
 const banner = [
   {
     title: '写死的标题1',
@@ -27,17 +28,18 @@ const banner = [
 /**
  * Jmeter Service
  */
-
 export default class Jmeter extends Service {
-
+  // 初始化Redis jmeter data
   public async initJmeterData() {
     try {
       // 清空
       await this.app.redis.ltrim('banner', 1, 0);
       for (let i = 0; i < banner.length; i++) {
         const item = banner[i];
+        // 设置单个对象
         await this.app.redis.hmset(`banner${i}`, item);
-        await this.app.redis.lpush('banner', `banner${i}`);
+        // 设置对象集合 key
+        await this.app.redis.rpush('banner', `banner${i}`);
       }
       return {
         code: 0,
@@ -53,6 +55,7 @@ export default class Jmeter extends Service {
     }
   }
 
+  // 固定数据返回
   public async jmeter() {
     return {
       code: 0,
@@ -61,6 +64,7 @@ export default class Jmeter extends Service {
     };
   }
 
+  // 数据库返回数据
   public async jmeterDbs() {
     try {
       const results = await this.app.mysql.select('jmeter', {
@@ -89,6 +93,7 @@ export default class Jmeter extends Service {
     }
   }
 
+  // redis 数据返回
   public async jmeterRedis() {
     const { app } = this;
     try {

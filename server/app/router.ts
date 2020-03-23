@@ -30,7 +30,6 @@ export default (app: Application) => {
   router.post('/api/v1/initJmeterData', controller.jmeter.initJmeterData);
   // 直接返回数据
   router.post('/api/v1/jmeter', controller.jmeter.jmeter);
-  router.post('/api/v1/jmeter', controller.jmeter.jmeter);
   // 查询数据库返回数据
   router.post('/api/v1/jmeterDbs', controller.jmeter.jmeterDbs);
   // redis返回数据
