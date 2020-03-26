@@ -31,4 +31,9 @@ export default class AccountController extends Controller {
     const { token } = ctx.request.body;
     ctx.body = await ctx.service.account.tokenVerify(token);
   }
+
+  public async tokenVerifyMiddleware() {
+    const { ctx } = this;
+    ctx.body = await ctx.service.account.tokenVerifyMiddleware();
+  }
 }

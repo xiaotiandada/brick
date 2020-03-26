@@ -1,7 +1,9 @@
 import { Application } from 'egg';
 
 export default (app: Application) => {
-  const { controller, router, io } = app;
+  const { controller, router, io, middleware } = app;
+
+  const verify = middleware.verify();
 
   router.get('/', controller.home.index);
 
@@ -18,8 +20,10 @@ export default (app: Application) => {
   // 删除用户
   // TODO: 需要一些安全验证和清理数据
   router.delete('/api/v1/deleteUser', controller.account.deleteUser);
-
+  // 校验token
   router.post('/api/v1/tokenVerify', controller.account.tokenVerify);
+  // middleware 校验token
+  router.post('/api/v1/tokenVerifyMiddleware', verify, controller.account.tokenVerifyMiddleware);
 
   // ---------------------------- passport ------------------------------------
   // TODO: 没开始

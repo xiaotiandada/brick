@@ -81,10 +81,16 @@ export default (appInfo: EggAppInfo) => {
     // proxy: false,
   };
 
+  config.jwt = {
+    secret: 'shhhhh',
+  };
+
+  config.middleware = [ 'verify' ];
+
   // the return config will combines to EggAppConfig
   return {
       ...config,
       ...bizConfig,
-      ...crawlerUrl
+      ...crawlerUrl,
     };
   };

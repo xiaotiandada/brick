@@ -20,16 +20,15 @@ export default class Account extends Service {
    * @param username 用户名
    */
   private jwtCreate (username: string) {
-    const token = jwt.sign({ username }, 'shhhhh', { expiresIn: '7d' });
-    return token;
+    return jwt.sign({ username }, this.config.jwt.secret, { expiresIn: '7d' });
   }
 
   /**
    *
    * @param token
    */
-  private async jwtVerify (token: string) {
-    return await jwt.verify(token, 'shhhhh');
+  private jwtVerify (token: string) {
+    return jwt.verify(token, this.config.jwt.secret);
   }
 
   /**
@@ -333,6 +332,14 @@ export default class Account extends Service {
         code: -1,
         message: e.toString(),
       }
+    }
+  }
+
+  // 验证token middleware
+  public async tokenVerifyMiddleware () {
+    return {
+      code: 0,
+      message: '成功',
     }
   }
 }
