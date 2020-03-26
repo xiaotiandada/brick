@@ -25,6 +25,14 @@ export default class Account extends Service {
   }
 
   /**
+   *
+   * @param token
+   */
+  private async jwtVerify (token: string) {
+    return await jwt.verify(token, 'shhhhh');
+  }
+
+  /**
    * 校验用户是否存在
    * @param username
    */
@@ -298,6 +306,32 @@ export default class Account extends Service {
       return {
         code: -1,
         message: '删除失败',
+      }
+    }
+  }
+
+  // 验证token
+  public async tokenVerify (token) {
+    try {
+      const jwtVerifyResult = await this.jwtVerify(token);
+      console.log('jwtVerifyResult', jwtVerifyResult);
+      if (jwtVerifyResult) {
+        return {
+          code: 0,
+          message: '验证成功',
+        }
+      } else {
+        return {
+          code: -1,
+          message: '验证失败',
+        }
+      }
+    } catch (e) {
+      console.log(e);
+      this.ctx.logger.error(new Error(`verifyUsername: ${e}`));
+      return {
+        code: -1,
+        message: e.toString(),
       }
     }
   }

@@ -19,6 +19,18 @@ export default (app: Application) => {
   // TODO: 需要一些安全验证和清理数据
   router.delete('/api/v1/deleteUser', controller.account.deleteUser);
 
+  router.post('/api/v1/tokenVerify', controller.account.tokenVerify);
+
+  // ---------------------------- passport ------------------------------------
+  // TODO: 没开始
+  // 挂载鉴权路由
+  app.passport.mount('github');
+
+  // 上面的 mount 是语法糖，等价于
+  // const github = app.passport.authenticate('github', {});
+  // router.get('/passport/github', github);
+  // router.get('/passport/github/callback', github);
+
   // ---------------------------- 事务 ---------------------------
   // 手动控制
   router.post('/api/v1/transaction', controller.transaction.transaction);

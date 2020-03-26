@@ -22,6 +22,14 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-redis',
   },
+  passport: {
+    enable: true,
+    package: 'egg-passport',
+  },
+  passportGithub: {
+    enable: true,
+    package: 'egg-passport-github',
+  },
 };
 
 export default plugin;

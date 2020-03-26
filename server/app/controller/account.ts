@@ -25,4 +25,10 @@ export default class AccountController extends Controller {
     const { ctx } = this;
     ctx.body = await ctx.service.account.deleteUser(ctx.request.body);
   }
+
+  public async tokenVerify() {
+    const { ctx } = this;
+    const { token } = ctx.request.body;
+    ctx.body = await ctx.service.account.tokenVerify(token);
+  }
 }
