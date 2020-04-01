@@ -6,7 +6,6 @@ export default (app: Application) => {
   const verify = middleware.verify();
 
   router.get('/', controller.home.index);
-
   // --------------------------- 账号 ------------------------------------
   // 注册
   router.post('/api/v1/registered', controller.account.registered);

@@ -1,5 +1,5 @@
 import { Service } from 'egg';
-import { isNull, componse } from '../public/utils/utils';
+import { isNull } from '../public/utils/utils';
 
 // 默认数据
 const banner = [
@@ -111,7 +111,7 @@ export default class Jmeter extends Service {
       const listFilter = data => data.filter(item => !isNull(item[1]));
       const listMap = data => data.map(item => item[1]);
 
-      const list = componse(listMap, listFilter)(result);
+      const list = this.ctx.helper.compose(listMap, listFilter)(result);
       return {
         code: 0,
         data: list,

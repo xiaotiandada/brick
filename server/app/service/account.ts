@@ -337,6 +337,7 @@ export default class Account extends Service {
 
   // 验证token middleware
   public async tokenVerifyMiddleware () {
+    console.log(this.ctx.helper.formatUser('xiaotian'));
     return {
       code: 0,
       message: '成功',

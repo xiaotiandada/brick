@@ -85,7 +85,13 @@ export default (appInfo: EggAppInfo) => {
     secret: 'shhhhh',
   };
 
-  config.middleware = [ 'verify' ];
+  // middleware
+  // config.middleware = [ 'verify' ];
+  //
+  // config.verify = {
+  //   match: '/api/v1/tokenVerifyMiddleware',
+  //   test: 'test',
+  // };
 
   // the return config will combines to EggAppConfig
   return {
