@@ -2,19 +2,19 @@
   <div class="home">
     <div class="screen">
       <h1 class="home-title">Hi !</h1>
-      <a href="javascript:;">Go</a>
+      <a href="javascript:;" @click="$router.push('admin')">Go</a>
     </div>
     <div class="screen">
       <h1 class="home-title">Hi !</h1>
-      <a href="javascript:;">Go</a>
+      <a href="javascript:;" @click="$router.push('admin')">Go</a>
     </div>
     <div class="screen">
       <h1 class="home-title">Hi !</h1>
-      <a href="javascript:;">Go</a>
+      <a href="javascript:;" @click="$router.push('admin')">Go</a>
     </div>
     <div class="screen">
       <h1 class="home-title">Hi !</h1>
-      <a href="javascript:;">Go</a>
+      <a href="javascript:;" @click="$router.push('admin')">Go</a>
     </div>
   </div>
 </template>

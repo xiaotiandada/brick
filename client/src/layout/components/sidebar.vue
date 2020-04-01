@@ -29,7 +29,7 @@ export default class Layout extends Vue {
   get routers() {
     // console.log(this.$route);
     // console.log(this.$router.options.routes);
-    return this.$router.options.routes;
+    return (this.$router as any).options.routes;
   }
 }
 </script>

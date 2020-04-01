@@ -9,14 +9,26 @@ import Layout from "@/layout/index.vue";
 const routes = [
   {
     path: "/",
-    component: () => import("../views/home/index.vue"),
-    // component: Layout,
-    // redirect: "/dashboard",
+    component: () => import("@/views/client/index.vue")
+    // children: [
+    //   {
+    //     path: "dashboard",
+    //     name: "dashboard",
+    //     component: () => import("@/views/Home.vue"),
+    //     meta: { title: "Dashboard", icon: "dashboard" }
+    //   }
+    // ]
+  },
+  {
+    path: "/admin",
+    name: "admin",
+    component: Layout,
+    redirect: "/admin/dashboard",
     children: [
       {
         path: "dashboard",
         name: "dashboard",
-        component: () => import("@/views/Home.vue"),
+        component: () => import("@/views/admin/Home.vue"),
         meta: { title: "Dashboard", icon: "dashboard" }
       }
     ]
@@ -28,7 +40,7 @@ const routes = [
       {
         path: "index",
         name: "zcool",
-        component: () => import("../views/zcool/index.vue"),
+        component: () => import("@/views/admin/zcool/index.vue"),
         meta: { title: "Zcool", icon: "zcool" }
       }
     ]
@@ -42,13 +54,13 @@ const routes = [
       {
         path: "import",
         name: "matataki-import",
-        component: () => import("../views/matataki/import/index.vue"),
+        component: () => import("@/views/admin/matataki/import/index.vue"),
         meta: { title: "Import", icon: "import" }
       },
       {
         path: "likes",
         name: "matataki-likes",
-        component: () => import("../views/matataki/likes/index.vue"),
+        component: () => import("@/views/admin/matataki/likes/index.vue"),
         meta: { title: "Likes", icon: "likes" }
       }
     ]
@@ -63,73 +75,73 @@ const routes = [
       {
         path: "one",
         name: "animation-one",
-        component: () => import("../views/animation/one.vue"),
+        component: () => import("@/views/admin/animation/one.vue"),
         meta: { title: "one", icon: "one" }
       },
       {
         path: "two",
         name: "animation-two",
-        component: () => import("../views/animation/two.vue"),
+        component: () => import("@/views/admin/animation/two.vue"),
         meta: { title: "two", icon: "two" }
       },
       {
         path: "three",
         name: "animation-three",
-        component: () => import("../views/animation/three.vue"),
+        component: () => import("@/views/admin/animation/three.vue"),
         meta: { title: "three", icon: "three" }
       },
       {
         path: "four",
         name: "animation-four",
-        component: () => import("../views/animation/four.vue"),
+        component: () => import("@/views/admin/animation/four.vue"),
         meta: { title: "four", icon: "four" }
       },
       {
         path: "five",
         name: "animation-five",
-        component: () => import("../views/animation/five.vue"),
+        component: () => import("@/views/admin/animation/five.vue"),
         meta: { title: "five", icon: "five" }
       },
       {
         path: "six",
         name: "animation-six",
-        component: () => import("../views/animation/six.vue"),
+        component: () => import("@/views/admin/animation/six.vue"),
         meta: { title: "six", icon: "six" }
       },
       {
         path: "seven",
         name: "animation-seven",
-        component: () => import("../views/animation/seven.vue"),
+        component: () => import("@/views/admin/animation/seven.vue"),
         meta: { title: "seven", icon: "seven" }
       },
       {
         path: "eight",
         name: "animation-eight",
-        component: () => import("../views/animation/eight.vue"),
+        component: () => import("@/views/admin/animation/eight.vue"),
         meta: { title: "eight", icon: "eight" }
       },
       {
         path: "nine",
         name: "animation-nine",
-        component: () => import("../views/animation/nine.vue"),
+        component: () => import("@/views/admin/animation/nine.vue"),
         meta: { title: "nine", icon: "nine" }
       },
       {
         path: "ten",
         name: "animation-ten",
-        component: () => import("../views/animation/ten.vue"),
+        component: () => import("@/views/admin/animation/ten.vue"),
         meta: { title: "ten", icon: "ten" }
       },
       {
         path: "eleven",
         name: "animation-eleven",
-        component: () => import("../views/animation/eleven.vue"),
+        component: () => import("@/views/admin/animation/eleven.vue"),
         meta: { title: "eleven", icon: "eleven" }
       },
       {
         path: "scrollmagic",
         name: "animation-scrollmagic",
-        component: () => import("../views/animation/scrollmagic.vue"),
+        component: () => import("@/views/admin/animation/scrollmagic.vue"),
         meta: { title: "scrollmagic", icon: "scrollmagic" }
       }
     ]

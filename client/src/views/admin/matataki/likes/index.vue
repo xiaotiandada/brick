@@ -82,19 +82,23 @@ export default class Likes extends Vue {
     socket.on("connect", function() {
       console.log("connect");
     });
-    socket.on("event", function(data) {});
-    socket.on("disconnect", function() {});
-    socket.on("res", (res: Object) => {
+    socket.on("event", function(data: object) {
+      console.log("event", data);
+    });
+    socket.on("disconnect", function() {
+      console.log("disconnect");
+    });
+    socket.on("res", (res: object) => {
       console.log(res);
       this.chat.push(res);
     });
   }
-  private setpFunc(formName: String) {
+  private setpFunc(formName: string) {
     return new Promise(resolve =>
-      this.$refs[formName].validate((valid: Boolean) => resolve(valid))
+      (this.$refs[formName] as any).validate((valid: Boolean) => resolve(valid))
     );
   }
-  private async start(formName: String) {
+  private async start(formName: string) {
     if (await this.setpFunc(formName)) {
       socket.emit("chat", {
         token: this.ruleForm.token,
