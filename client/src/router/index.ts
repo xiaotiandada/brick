@@ -20,6 +20,10 @@ const routes = [
     // ]
   },
   {
+    path: "/io",
+    component: () => import("@/views/client/io.vue")
+  },
+  {
     path: "/admin",
     name: "admin",
     component: Layout,

@@ -32,16 +32,19 @@ export default (appInfo: EggAppInfo) => {
 
   // egg-socketio
   config.io = {
-    init: { }, // passed to engine.io
     namespace: {
       '/': {
-        connectionMiddleware: [],
-        packetMiddleware: [],
+        connectionMiddleware: [
+            'connection',
+        ],
+        packetMiddleware: [], // 针对消息的处理暂时不实现
       },
-      '/example': {
-        connectionMiddleware: [],
-        packetMiddleware: [],
-      },
+    },
+    // cluster 模式下，通过 redis 实现数据共享
+    redis: {
+      port: 6379,          // Redis port
+      host: '127.0.0.1',   // Redis host
+      db: 0,
     },
   };
 

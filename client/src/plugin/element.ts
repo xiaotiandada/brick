@@ -14,7 +14,7 @@ import {
   Image,
   Form,
   FormItem,
-  Input,
+  Input
 } from "element-ui";
 
 Vue.use(Button)
@@ -29,7 +29,7 @@ Vue.use(Button)
   .use(Image)
   .use(Form)
   .use(FormItem)
-  .use(Input)
+  .use(Input);
 
 Vue.use(Loading.directive);
 Vue.prototype.$loading = Loading.service;
