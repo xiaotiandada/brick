@@ -1,5 +1,4 @@
 import { Controller } from 'egg';
-import {error} from "util";
 
 export default class ChatController extends Controller {
     public async exchange() {
@@ -28,7 +27,7 @@ export default class ChatController extends Controller {
             console.log(data);
 
         } catch (e) {
-            app.logger.error(error)
+            app.logger.error(e)
         }
     }
 }

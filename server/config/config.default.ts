@@ -33,11 +33,17 @@ export default (appInfo: EggAppInfo) => {
   // egg-socketio
   config.io = {
     namespace: {
+      // io 消息聊天室 demo
       '/': {
         connectionMiddleware: [
             'connection',
         ],
         packetMiddleware: [], // 针对消息的处理暂时不实现
+      },
+      // 通知
+      '/notification': {
+        connectionMiddleware: [],
+        packetMiddleware: [],
       },
     },
     // cluster 模式下，通过 redis 实现数据共享

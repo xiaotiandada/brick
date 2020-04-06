@@ -64,4 +64,7 @@ export default (app: Application) => {
 
   // io
   io.of('/').route('exchange', io.controller.chat.exchange);
+  // 通知 notification
+  // 客户端接受消息
+
 };
