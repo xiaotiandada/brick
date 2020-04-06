@@ -29,7 +29,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import Avatar from "vue-avatar";
 import io from "socket.io-client";
-let socket = null;
+let socket: any = null;
 
 @Component({
   components: {

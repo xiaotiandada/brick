@@ -6,3 +6,5 @@ declare module "*.vue" {
 declare const ScrollMagic: any;
 declare const TimelineMax: any;
 declare const Power0: any;
+
+declare module "vue-avatar";

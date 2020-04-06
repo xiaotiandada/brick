@@ -24,6 +24,10 @@ const routes = [
     component: () => import("@/views/client/io.vue")
   },
   {
+    path: "/notification",
+    component: () => import("@/views/client/notification.vue")
+  },
+  {
     path: "/admin",
     name: "admin",
     component: Layout,
