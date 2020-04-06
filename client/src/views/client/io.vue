@@ -9,6 +9,9 @@
         <div v-if="item.action === 'join'" class="join">
           {{ item.id }}加入聊天室
         </div>
+        <div v-if="item.action === 'leave'" class="join">
+          {{ item.id }}离开了聊天室
+        </div>
       </div>
     </div>
     <el-input
@@ -26,7 +29,8 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import Avatar from "vue-avatar";
 import io from "socket.io-client";
-const socket = io("http://127.0.0.1:7001");
+let socket = null;
+
 @Component({
   components: {
     Avatar
@@ -41,6 +45,15 @@ export default class Likes extends Vue {
     this.socketFun();
   }
   private socketFun() {
+    socket = io("http://127.0.0.1:7001", {
+      // 实际使用中可以在这里传递参数
+      query: {
+        room: this.$route.query.room || "demo",
+        userId: `client_${Math.random()}`
+      },
+
+      transports: ["websocket"]
+    });
     const log = console.log;
 
     socket.on("connect", () => {
@@ -67,6 +80,11 @@ export default class Likes extends Vue {
     // 接收在线用户信息
     socket.on("online", (msg: any) => {
       log("#online,", msg);
+      // 格式化一下 push
+      this.chat.push({
+        action: msg.action,
+        id: msg.id
+      });
     });
     // 系统事件
     socket.on("disconnect", function() {
@@ -78,30 +96,19 @@ export default class Likes extends Vue {
     socket.on("error", () => {
       log("error");
     });
-
     (window as any).socket = socket;
   }
-  private setpFunc(formName: string) {
-    return new Promise(resolve =>
-      (this.$refs[formName] as any).validate((valid: Boolean) => resolve(valid))
-    );
-  }
-  private async start(formName: string) {
-    if (await this.setpFunc(formName)) {
-      socket.emit("chat", {
-        // token: this.ruleForm.token,
-        // firstId: this.ruleForm.firstId,
-        // lastId: this.ruleForm.lastId
-      });
-    }
-  }
+
   private sendMessage() {
     const id = socket.id;
     let data = {
       id,
-      message: this.message
+      target: id,
+      payload: {
+        msg: this.message
+      }
     };
-    socket.emit("chat", data);
+    socket.emit("exchange", data);
     this.message = "";
   }
 }

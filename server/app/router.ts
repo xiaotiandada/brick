@@ -63,7 +63,5 @@ export default (app: Application) => {
   router.post('/api/v1/m/post/likes', controller.m.postPublish);
 
   // io
-  io.of('/').route('exchange', io.controller.nsp.exchange);
-  io.of('/').route('join', io.controller.chat.join);
-  io.of('/').route('chat', io.controller.chat.exchange);
+  io.of('/').route('exchange', io.controller.chat.exchange);
 };

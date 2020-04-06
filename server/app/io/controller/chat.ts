@@ -1,30 +1,34 @@
 import { Controller } from 'egg';
+import {error} from "util";
 
 export default class ChatController extends Controller {
-    public async join() {
-        const { ctx, app } = this
-        const nsp = app.io.of('/');
-        const message = ctx.args[0];
-
-        await nsp.emit('chat', {
-            action: 'join',
-            message: message.id,
-        });
-    }
     public async exchange() {
         const { ctx, app } = this;
         const message = ctx.args[0];
         const nsp = app.io.of('/');
-        await app.io.of('/').adapter.clients((err, clients) => {
-            console.log(err)
-            console.log(clients); // an array containing all connected socket ids
-        });
-        const data = {
-            action: 'chat',
-            id: message.id,
-            message: message.message,
-        };
-        await nsp.emit('chat', data);
-        console.log(data);
+        const socket = ctx.socket;
+        const client = socket.id;
+
+        try {
+            // p2p
+            const { target, payload } = message;
+            if (!target) return;
+            const msg = ctx.helper.parseMsg('exchange', payload, { client, target });
+            nsp.emit(target, msg);
+            console.log(msg);
+
+
+            // room
+            const data = {
+                action: 'chat',
+                id: message.id,
+                message: payload.msg,
+            };
+            await nsp.emit('chat', data);
+            console.log(data);
+
+        } catch (e) {
+            app.logger.error(error)
+        }
     }
 }
