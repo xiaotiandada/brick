@@ -42,7 +42,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import io from "socket.io-client";
-const socket = io("http://127.0.0.1:7001");
+const socket = io("http://123.207.60.132:7001");
 @Component
 export default class Likes extends Vue {
   private sidebar: Boolean = true;

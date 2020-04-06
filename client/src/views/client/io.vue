@@ -45,7 +45,7 @@ export default class Likes extends Vue {
     this.socketFun();
   }
   private socketFun() {
-    socket = io("http://127.0.0.1:7001", {
+    socket = io("http://123.207.60.132:7001", {
       // 实际使用中可以在这里传递参数
       query: {
         room: this.$route.query.room || "demo",
