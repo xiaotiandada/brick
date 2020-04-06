@@ -34,7 +34,8 @@
     "egg-socket.io": "4.1.6",
     "jsonwebtoken": "8.5.1",
     "qs": "6.9.1",
-    "superagent": "5.1.2"
+    "superagent": "5.1.2",
+    "ws": "7.2.3"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.40",

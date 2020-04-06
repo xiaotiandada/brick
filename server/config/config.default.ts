@@ -32,6 +32,9 @@ export default (appInfo: EggAppInfo) => {
 
   // egg-socketio
   config.io = {
+    init: {
+      wsEngine: 'ws',
+    }, // passed to engine.io
     namespace: {
       // io 消息聊天室 demo
       '/': {
