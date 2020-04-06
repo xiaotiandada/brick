@@ -33,7 +33,10 @@
 </template>
 
 <script lang="ts">
-import { Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import io from "socket.io-client";
+
+@Component
 export default class Notification extends Vue {
   private activeIndex: string = "1";
   private activeName: string = "second";
@@ -43,6 +46,64 @@ export default class Notification extends Vue {
   }
   private handleClick(tab: any, event: any) {
     console.log(tab, event);
+  }
+  created() {
+    this.socketFun();
+  }
+  private socketFun() {
+    console.log(11111);
+    let socket = io("http://127.0.0.1:7001/notification", {
+      // 实际使用中可以在这里传递参数
+      query: {
+        room: this.$route.query.room || "demo",
+        userId: `client_${Math.random()}`
+      },
+
+      transports: ["websocket"]
+    });
+    const log = console.log;
+
+    socket.on("connect", () => {
+      const id = socket.id;
+
+      log("#connect,", id, socket);
+
+      // 监听自身 id 以实现 p2p 通讯
+      socket.on(id, (msg: any) => {
+        log("#receive,", msg, id);
+      });
+    });
+
+    socket.on("event", function(data: object) {
+      log("event", data);
+    });
+    socket.on("res", (res: object) => {
+      log(93, res);
+    });
+    socket.on("notification", (res: object) => {
+      log("notification: ", res);
+      // this.chat.push(res);
+    });
+    // 接收在线用户信息
+    socket.on("online", (msg: any) => {
+      log("#online,", msg);
+      // 格式化一下 push
+      // this.chat.push({
+      //   action: msg.action,
+      //   id: msg.id
+      // });
+    });
+    // 系统事件
+    socket.on("disconnect", function() {
+      log("disconnect");
+    });
+    socket.on("disconnecting", function() {
+      log("disconnecting");
+    });
+    socket.on("error", () => {
+      log("error");
+    });
+    (window as any).socket = socket;
   }
 }
 </script>

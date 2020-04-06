@@ -16,7 +16,6 @@ export default class ChatController extends Controller {
             nsp.emit(target, msg);
             console.log(msg);
 
-
             // room
             const data = {
                 action: 'chat',

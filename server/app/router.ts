@@ -63,6 +63,7 @@ export default (app: Application) => {
   router.post('/api/v1/m/post/likes', controller.m.postPublish);
 
   // io
+  router.post('/api/v1/notification', controller.notification.notification);
   io.of('/').route('exchange', io.controller.chat.exchange);
   // 通知 notification
   // 客户端接受消息
