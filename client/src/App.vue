@@ -16,6 +16,19 @@ export default class App extends Vue {
     console.log(process.env.NODE_ENV);
     console.log(process.env.VUE_APP_API);
     console.log(process.env.VUE_APP_TEST);
+
+    // 获取通知权限
+    window.addEventListener("load", function() {
+      // @ts-ignore
+      Notification.requestPermission(function(status: string) {
+        // This allows to use Notification.permission with Chrome/Safari
+        // @ts-ignore
+        if (Notification.permission !== status) {
+          // @ts-ignore
+          Notification.permission = status;
+        }
+      });
+    });
   }
 }
 </script>

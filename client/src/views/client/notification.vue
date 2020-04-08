@@ -29,6 +29,11 @@
         111
       </div>
     </div>
+
+    <div class="fixed">
+      <el-button @click="sendSystemNotification('system')">系统消息</el-button>
+      <el-button @click="sendSystemNotification('follow')">用户关注</el-button>
+    </div>
   </div>
 </template>
 
@@ -36,6 +41,11 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import io from "socket.io-client";
 
+// 通知数据
+interface NotificationType {
+  action: string;
+  message: string;
+}
 @Component
 export default class Notification extends Vue {
   private activeIndex: string = "1";
@@ -51,7 +61,6 @@ export default class Notification extends Vue {
     this.socketFun();
   }
   private socketFun() {
-    console.log(11111);
     let socket = io("http://127.0.0.1:7001/notification", {
       // 实际使用中可以在这里传递参数
       query: {
@@ -63,47 +72,48 @@ export default class Notification extends Vue {
     });
     const log = console.log;
 
-    socket.on("connect", () => {
-      const id = socket.id;
-
-      log("#connect,", id, socket);
-
-      // 监听自身 id 以实现 p2p 通讯
-      socket.on(id, (msg: any) => {
-        log("#receive,", msg, id);
-      });
-    });
-
-    socket.on("event", function(data: object) {
-      log("event", data);
-    });
-    socket.on("res", (res: object) => {
-      log(93, res);
-    });
-    socket.on("notification", (res: object) => {
+    socket.on("notification", (res: NotificationType) => {
       log("notification: ", res);
-      // this.chat.push(res);
+      this.systemNotification(res);
     });
-    // 接收在线用户信息
-    socket.on("online", (msg: any) => {
-      log("#online,", msg);
-      // 格式化一下 push
-      // this.chat.push({
-      //   action: msg.action,
-      //   id: msg.id
-      // });
+  }
+
+  // 发送系统消息
+  private systemNotification(data: NotificationType) {
+    const h = this.$createElement;
+
+    this.$notify({
+      title: "系统消息",
+      message: h("p", { style: "color: blank" }, data.message)
     });
-    // 系统事件
-    socket.on("disconnect", function() {
-      log("disconnect");
-    });
-    socket.on("disconnecting", function() {
-      log("disconnecting");
-    });
-    socket.on("error", () => {
-      log("error");
-    });
-    (window as any).socket = socket;
+  }
+  private async sendSystemNotification(type: string) {
+    let data = {};
+    if (type === "follow") {
+      data = {
+        action: "user",
+        type
+      };
+    } else if (type === "system") {
+      data = {
+        action: "system"
+      };
+    } else {
+      //
+      return;
+    }
+    console.log(type);
+    // @ts-ignore
+    await this.$API
+      .notification({
+        notification: data
+      })
+      .then((res: object) => {
+        console.log(res);
+      })
+      .catch((e: any) => {
+        console.log(e);
+      });
   }
 }
 </script>
@@ -174,5 +184,10 @@ export default class Notification extends Vue {
   background-color: #fff;
   margin-bottom: 1.333rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.fixed {
+  position: fixed;
+  right: 0;
+  top: 200px;
 }
 </style>

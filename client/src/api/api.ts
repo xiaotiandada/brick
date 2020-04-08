@@ -10,5 +10,8 @@ export default {
   },
   postPublish(params: Object) {
     return _axios.post("/api/v1/m/post/publish", params);
+  },
+  notification(data: Object) {
+    return _axios.post("/api/v1/notification", data);
   }
 };
