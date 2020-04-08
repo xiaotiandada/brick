@@ -12,7 +12,10 @@
             <el-menu-item index="1">首页</el-menu-item>
           </el-menu>
 
-          <i class="el-icon-message-solid active notice"></i>
+          <i
+            class="el-icon-message-solid notice"
+            :class="status && 'active'"
+          ></i>
         </div>
       </div>
       <nav class="nav">
@@ -50,6 +53,7 @@ interface NotificationType {
 export default class Notification extends Vue {
   private activeIndex: string = "1";
   private activeName: string = "second";
+  private status: boolean = false;
 
   private handleSelect(key: any, keyPath: any) {
     console.log(key, keyPath);
@@ -74,6 +78,7 @@ export default class Notification extends Vue {
 
     socket.on("notification", (res: NotificationType) => {
       log("notification: ", res);
+      this.status = true;
       this.systemNotification(res);
     });
   }

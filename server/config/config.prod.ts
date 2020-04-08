@@ -5,10 +5,10 @@ export default () => {
   // API
   const API = {
     // matataki api
-    mApi: 'https://api.smartsignature.io'
+    mApi: 'https://api.smartsignature.io',
   }
   return {
     ...config,
-    ...API
+    ...API,
   };
 };
