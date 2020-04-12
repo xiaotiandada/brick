@@ -9,7 +9,9 @@
             mode="horizontal"
             @select="handleSelect"
           >
-            <el-menu-item index="1">首页</el-menu-item>
+            <el-menu-item index="1">
+              <el-input v-model="uid" id="notificationId"></el-input>
+            </el-menu-item>
           </el-menu>
 
           <i
@@ -21,16 +23,20 @@
       <nav class="nav">
         <div class="nav-main">
           <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="用户消息" name="first"></el-tab-pane>
-            <el-tab-pane label="系统消息" name="second"></el-tab-pane>
+            <el-tab-pane
+              label="用户消息"
+              name="notification-index"
+            ></el-tab-pane>
+            <el-tab-pane
+              label="系统消息"
+              name="notification-system"
+            ></el-tab-pane>
           </el-tabs>
         </div>
       </nav>
     </div>
     <div class="main">
-      <div class="main-block" v-for="item in 20" :key="item">
-        111
-      </div>
+      <router-view></router-view>
     </div>
 
     <div class="fixed">
@@ -43,7 +49,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import io from "socket.io-client";
-
+import moment from "moment";
 // 通知数据
 interface NotificationType {
   action: string;
@@ -52,20 +58,34 @@ interface NotificationType {
 @Component
 export default class Notification extends Vue {
   private activeIndex: string = "1";
-  private activeName: string = "second";
+  private activeName: string = "notification-index";
   private status: boolean = false;
+  private uid: string = String(Math.floor(Date.now() / 10000));
 
-  private handleSelect(key: any, keyPath: any) {
-    console.log(key, keyPath);
-  }
-  private handleClick(tab: any, event: any) {
-    console.log(tab, event);
-  }
   created() {
+    this.activeName = this.$route.name || "notification-index";
+    this.getNotificationRead();
     this.socketFun();
   }
+  // 是否有未读的消息
+  private getNotificationRead() {
+    // @ts-ignore
+    this.$API
+      .getNotificationRead({
+        uid: this.uid
+      })
+      .then((res: any) => {
+        if (res.code === 0) {
+          this.status = res.data;
+        }
+      })
+      .catch((e: any) => {
+        console.log(e);
+      });
+  }
+  // 连接socket
   private socketFun() {
-    let socket = io("http://127.0.0.1:7001/notification", {
+    let socket = io(`${process.env.VUE_APP_API}/api/v1/io/notification`, {
       // 实际使用中可以在这里传递参数
       query: {
         room: this.$route.query.room || "demo",
@@ -107,18 +127,28 @@ export default class Notification extends Vue {
       //
       return;
     }
-    console.log(type);
     // @ts-ignore
     await this.$API
       .notification({
         notification: data
       })
-      .then((res: object) => {
-        console.log(res);
-      })
+      .then((res: object) => {})
       .catch((e: any) => {
         console.log(e);
       });
+  }
+  private handleSelect(key: any, keyPath: any) {
+    console.log(key, keyPath);
+  }
+  private handleClick(tab: any, event: any) {
+    // console.log(tab, event);
+    if (tab.name === "notification-index") {
+      this.$router.push({ name: "notification-index" });
+    } else if (tab.name === "notification-system") {
+      this.$router.push({ name: "notification-system" });
+    } else {
+      //
+    }
   }
 }
 </script>
@@ -185,10 +215,13 @@ export default class Notification extends Vue {
 .main-block {
   max-width: 700px;
   width: 90%;
-  min-height: 160px;
+  padding: 20px 10px;
   background-color: #fff;
-  margin-bottom: 1.333rem;
+  margin-bottom: 10px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .fixed {
   position: fixed;

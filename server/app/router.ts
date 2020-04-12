@@ -63,8 +63,16 @@ export default (app: Application) => {
   router.post('/api/v1/m/post/likes', controller.m.postPublish);
 
   // io
+  // /api/v1/io/*
   router.post('/api/v1/notification', controller.notification.notification);
-  io.of('/').route('exchange', io.controller.chat.exchange);
+  // 系统通知列表
+  router.get('/api/v1/notification', controller.notification.getNotification);
+  // 某个id是否还有未阅读的消息
+  router.get('/api/v1/notificationRead', controller.notification.notificationRead);
+  // 某个id阅读系统消息
+  router.post('/api/v1/notificationRead', controller.notification.notificationReadPost);
+
+  io.of('/api/v1/io/chat').route('exchange', io.controller.chat.exchange);
   // 通知 notification
   // 客户端接受消息
 

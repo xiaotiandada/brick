@@ -5,7 +5,7 @@ module.exports = () => {
         console.log('PREFIX', PREFIX);
         const { app, socket, logger, helper } = ctx;
         const id = socket.id;
-        const nsp = app.io.of('/');
+        const nsp = app.io.of('/api/v1/io/chat');
         const query = socket.handshake.query;
 
         // 用户信息

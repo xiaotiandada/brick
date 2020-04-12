@@ -13,5 +13,14 @@ export default {
   },
   notification(data: Object) {
     return _axios.post("/api/v1/notification", data);
+  },
+  getNotification(params: Object) {
+    return _axios.get("/api/v1/notification", { params });
+  },
+  getNotificationRead(params: Object) {
+    return _axios.get("/api/v1/notificationRead", { params });
+  },
+  notificationRead(data: Object) {
+    return _axios.post("/api/v1/notificationRead", data);
   }
 };

@@ -4,7 +4,7 @@
 //     return async (ctx, next) => {
 //         const { app, socket, logger, helper } = ctx;
 //         const id = socket.id;
-//         const nsp = app.io.of('/');
+//         const nsp = app.io.of('/api/v1/io/chat/chat');
 //         const query = socket.handshake.query;
 //
 //         // 用户信息

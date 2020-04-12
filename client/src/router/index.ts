@@ -9,6 +9,7 @@ import Layout from "@/layout/index.vue";
 const routes = [
   {
     path: "/",
+    name: "index",
     component: () => import("@/views/client/index.vue")
     // children: [
     //   {
@@ -25,7 +26,21 @@ const routes = [
   },
   {
     path: "/notification",
-    component: () => import("@/views/client/notification.vue")
+    name: "notification",
+    component: () => import("@/views/client/notification/template.vue"),
+    redirect: "/notification/index",
+    children: [
+      {
+        path: "/notification/index",
+        name: "notification-index",
+        component: () => import("@/views/client/notification/index.vue")
+      },
+      {
+        path: "/notification/system",
+        name: "notification-system",
+        component: () => import("@/views/client/notification/system.vue")
+      }
+    ]
   },
   {
     path: "/test",

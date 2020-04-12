@@ -3,8 +3,7 @@ import axios from "axios";
 import { Message } from "element-ui";
 
 const _axios = axios.create({
-  // baseURL: "http://123.207.60.132:7001",
-  baseURL: "http://127.0.0.1:7001",
+  baseURL: process.env.VUE_APP_API,
   timeout: 20000,
   headers: {}
 });

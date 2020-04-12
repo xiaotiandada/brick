@@ -4,7 +4,7 @@ export default class ChatController extends Controller {
     public async exchange() {
         const { ctx, app } = this;
         const message = ctx.args[0];
-        const nsp = app.io.of('/');
+        const nsp = app.io.of('/api/v1/io/chat');
         const socket = ctx.socket;
         const client = socket.id;
 
