@@ -15,7 +15,7 @@ logs/
 app/**/*.js
 test/**/*.js
 config/**/*.js
-config/config.prod1.ts
+config/config.prod.ts
 app/**/*.map
 test/**/*.map
 config/**/*.map
