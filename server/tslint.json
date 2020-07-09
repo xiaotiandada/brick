@@ -1,9 +1,0 @@
-{
-  "extends": ["tslint-config-egg"],
-  "rules": {
-    "semicolon": [
-      false,
-      "always"
-    ]
-  }
-}
