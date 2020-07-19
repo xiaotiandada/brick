@@ -13,7 +13,7 @@
     "typescript": "3.8.3"
   },
   "dependencies": {
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "lottie-web": "5.6.6",
     "sine-waves": "0.3.0"
   }
