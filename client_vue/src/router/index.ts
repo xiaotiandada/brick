@@ -172,7 +172,12 @@ const routes = [
         meta: { title: "scrollmagic", icon: "scrollmagic" }
       }
     ]
-  }
+  },
+  {
+    path: "/search",
+    name: "index",
+    component: () => import("@/views/client/search.vue")
+  },
 
   // {
   //   path: "/about",
