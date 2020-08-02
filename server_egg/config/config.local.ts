@@ -32,6 +32,12 @@ export default () => {
     },
   };
 
+  config.elasticsearch = {
+    host: 'localhost:9200',
+    log: 'trace',
+    apiVersion: '6.8',
+  };
+
   // API
   const API = {
     // matataki api

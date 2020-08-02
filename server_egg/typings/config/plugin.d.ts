@@ -1,4 +1,4 @@
-// This file is created by egg-ts-helper@1.25.7
+// This file is created by egg-ts-helper@1.25.6
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
@@ -20,6 +20,7 @@ import 'egg-mysql';
 import 'egg-redis';
 import 'egg-passport';
 import 'egg-passport-github';
+import 'egg-es';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
   interface EggPlugin {
@@ -41,5 +42,6 @@ declare module 'egg' {
     redis?: EggPluginItem;
     passport?: EggPluginItem;
     passportGithub?: EggPluginItem;
+    elasticsearch?: EggPluginItem;
   }
 }

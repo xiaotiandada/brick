@@ -82,4 +82,7 @@ export default (app: Application) => {
   // 通知 notification
   // 客户端接受消息
 
+  // elasticsearch
+  router.get('/api/search', controller.elasticsearch.search);
+
 };

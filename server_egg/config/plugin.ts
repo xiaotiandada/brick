@@ -30,6 +30,10 @@ const plugin: EggPlugin = {
     enable: true,
     package: 'egg-passport-github',
   },
+  elasticsearch: {
+    enable: true,
+    package: 'egg-es',
+  }
 };
 
 export default plugin;

@@ -5,5 +5,6 @@ declare module 'egg' {
         passport: any;
         middleware: any;
         io: any;
+        elasticsearch: any;
     }
 }
