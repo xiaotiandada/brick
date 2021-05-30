@@ -45,7 +45,7 @@
     "qs": "6.9.1",
     "superagent": "5.1.2",
     "tnwx": "2.4.5",
-    "ws": "7.2.3"
+    "ws": "7.4.6"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.40",
