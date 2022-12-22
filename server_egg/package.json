@@ -40,7 +40,7 @@
     "egg-scripts": "^2.6.0",
     "egg-socket.io": "4.1.6",
     "elasticsearch": "16.7.1",
-    "jsonwebtoken": "8.5.1",
+    "jsonwebtoken": "9.0.0",
     "moment": "2.24.0",
     "qs": "6.9.1",
     "superagent": "5.1.2",
